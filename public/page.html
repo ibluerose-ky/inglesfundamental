@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English For Teachers - Planeje suas Aulas em Minutos</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#2563eb',
+                            light: '#eff6ff',
+                            dark: '#1e3a8a',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-soft': 'pulse-soft 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        'pulse-soft': {
+                            '0%, 100%': { opacity: 1, transform: 'scale(1)' },
+                            '50%': { opacity: 0.85, transform: 'scale(1.03)', filter: 'brightness(1.1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: white;
+            color: #0f172a; /* text-slate-900 */
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .carousel-mask {
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Entrance Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        [x-cloak] { display: none !important; }
+    </style>
+    <!-- Alpine.js for interactivity -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body x-data="pageData()">
+    <!-- Top Bar -->
+    <div class="bg-red-600 text-white py-2 px-4 text-center text-xs md:text-sm font-bold border-b border-white/10">
+        🔥 OFERTA LIMITADA — SOMENTE HOJE, <span x-text="todayDate.toUpperCase()"></span>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="py-12 md:py-24 px-4 md:px-6 pt-10 md:pt-20 bg-gradient-to-b from-brand-light/50 to-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center max-w-4xl mx-auto space-y-6">
+                <h1 class="text-3xl sm:text-4xl md:text-6xl font-display font-extrabold tracking-tight leading-[1.1] text-brand-blue reveal active">
+                    Aulas de Inglês Dinâmicas do 1º ao 9º ano Prontas em Minutos!
+                </h1>
+                
+                <p class="text-base sm:text-lg md:text-xl text-slate-600 max-w-2xl mx-auto reveal active" style="transition-delay: 100ms">
+                    Teacher, Chega de perder horas planejando. Tenha acesso agora mesmo a <strong class="text-brand-blue font-black text-[1.1em]">+500 dinâmicas e atividades prontas</strong> para aplicar em sala e aumentar a participação da sua turma.
+                </p>
+                
+                <p class="text-brand-blue font-bold text-base sm:text-lg reveal active" style="transition-delay: 150ms">
+                    👇 Assista o vídeo abaixo
+                </p>
+                
+                <div class="relative mt-8 aspect-[9/16] w-full max-w-[340px] md:max-w-[400px] mx-auto bg-slate-100 rounded-3xl overflow-hidden shadow-2xl border-4 border-white group reveal active" 
+                     style="transition-delay: 200ms">
+                    <iframe src="https://fast.wistia.net/embed/iframe/p42pwsc1xt" 
+                            title="Vídeo de Apresentação" 
+                            allow="autoplay; fullscreen" 
+                            allowtransparency="true" 
+                            frameborder="0" 
+                            scrolling="no" 
+                            class="absolute inset-0 w-full h-full rounded-2xl z-30"></iframe>
+                </div>
+                
+                <div class="flex flex-col items-center gap-3 pt-6">
+                    <button @click="document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' })" class="w-full max-w-[280px] sm:max-w-none md:w-auto md:min-w-[360px] bg-[#009664] text-white hover:bg-[#007a51] shadow-xl shadow-emerald-500/20 px-6 py-3 md:py-4 text-base md:text-lg font-bold rounded-[14px] md:rounded-[16px] transition-all duration-300 transform hover:-translate-y-1 active:scale-95 animate-pulse-soft flex items-center justify-center gap-2">
+                        Quero Acessar Agora <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </button>
+                    
+                    <div class="flex items-center gap-2 text-[9px] md:text-[11px] font-bold uppercase tracking-wider text-brand-dark bg-slate-100/50 px-3 py-1 rounded-lg border border-slate-200/50 reveal active">
+                        <span>⚠️ ACESSO IMEDIATO • VITALÍCIO • COM CERTIFICADO</span>
+                    </div>
+                    
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transformation Section -->
+    <section class="py-16 md:py-24 px-4 md:px-6 bg-[#fcfcfc]">
+        <div class="max-w-6xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-display font-black text-slate-900">
+                    Sua <span class="text-brand-blue">Transformação</span>
+                </h2>
+                <div class="mt-4 space-y-1">
+                    <p class="text-slate-500 font-medium text-lg">Reconhece alguma dessas situações?</p>
+                    <p class="text-slate-400 text-base">Veja como sua rotina vai mudar</p>
+                </div>
+            </div>
+            
+            <!-- Comparison List -->
+            <div class="max-w-4xl mx-auto space-y-4 mb-16">
+                <!-- Item 1 -->
+                <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-3 md:p-6 grid grid-cols-[1fr_30px_1fr] md:grid-cols-[1fr_40px_1fr] items-center gap-2 md:gap-4 reveal">
+                    <div class="flex items-center gap-2 md:gap-3 text-slate-400 w-full justify-start">
+                        <div class="w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-red-100 flex items-center justify-center text-red-400 flex-shrink-0">
+                            <i data-lucide="x" class="w-3.5 h-3.5 md:w-5 md:h-5"></i>
+                        </div>
+                        <span class="line-through text-[10px] md:text-base font-medium leading-tight">Planejamento demorado e estressante</span>
+                    </div>
+                    <div class="flex justify-center text-brand-blue/30">
+                        <i data-lucide="arrow-right" class="w-4 h-4 md:w-6 md:h-6"></i>
+                    </div>
+                    <div class="flex items-center gap-2 md:gap-3 text-slate-900 w-full justify-start">
+                        <div class="w-6 h-6 md:w-8 md:h-8 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-500 flex-shrink-0">
+                            <i data-lucide="check" class="w-3.5 h-3.5 md:w-5 md:h-5"></i>
+                        </div>
+                        <span class="text-[10px] md:text-base font-bold text-left leading-tight">Aulas prontas em minutos</span>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-3 md:p-6 grid grid-cols-[1fr_30px_1fr] md:grid-cols-[1fr_40px_1fr] items-center gap-2 md:gap-4 reveal" style="transition-delay: 100ms">
+                    <div class="flex items-center gap-2 md:gap-3 text-slate-400 w-full justify-start">
+                        <div class="w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-red-100 flex items-center justify-center text-red-400 flex-shrink-0">
+                            <i data-lucide="x" class="w-3.5 h-3.5 md:w-5 md:h-5"></i>
+                        </div>
+                        <span class="line-through text-[10px] md:text-base font-medium leading-tight">Alunos desinteressados e desmotivados</span>
+                    </div>
+                    <div class="flex justify-center text-brand-blue/30">
+                        <i data-lucide="arrow-right" class="w-4 h-4 md:w-6 md:h-6"></i>
+                    </div>
+                    <div class="flex items-center gap-2 md:gap-3 text-slate-900 w-full justify-start">
+                        <div class="w-6 h-6 md:w-8 md:h-8 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-500 flex-shrink-0">
+                            <i data-lucide="check" class="w-3.5 h-3.5 md:w-5 md:h-5"></i>
+                        </div>
+                        <span class="text-[10px] md:text-base font-bold text-left leading-tight">Dinâmicas que engajam qualquer turma</span>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-3 md:p-6 grid grid-cols-[1fr_30px_1fr] md:grid-cols-[1fr_40px_1fr] items-center gap-2 md:gap-4 reveal" style="transition-delay: 200ms">
+                    <div class="flex items-center gap-2 md:gap-3 text-slate-400 w-full justify-start">
+                        <div class="w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-red-100 flex items-center justify-center text-red-400 flex-shrink-0">
+                            <i data-lucide="x" class="w-3.5 h-3.5 md:w-5 md:h-5"></i>
+                        </div>
+                        <span class="line-through text-[10px] md:text-base font-medium leading-tight">Material caro e desatualizado</span>
+                    </div>
+                    <div class="flex justify-center text-brand-blue/30">
+                        <i data-lucide="arrow-right" class="w-4 h-4 md:w-6 md:h-6"></i>
+                    </div>
+                    <div class="flex items-center gap-2 md:gap-3 text-slate-900 w-full justify-start">
+                        <div class="w-6 h-6 md:w-8 md:h-8 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-500 flex-shrink-0">
+                            <i data-lucide="check" class="w-3.5 h-3.5 md:w-5 md:h-5"></i>
+                        </div>
+                        <span class="text-[10px] md:text-base font-bold text-left leading-tight">400+ dinâmicas e atividades prontas para usar</span>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-3 md:p-6 grid grid-cols-[1fr_30px_1fr] md:grid-cols-[1fr_40px_1fr] items-center gap-2 md:gap-4 reveal" style="transition-delay: 300ms">
+                    <div class="flex items-center gap-2 md:gap-3 text-slate-400 w-full justify-start">
+                        <div class="w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-red-100 flex items-center justify-center text-red-400 flex-shrink-0">
+                            <i data-lucide="x" class="w-3.5 h-3.5 md:w-5 md:h-5"></i>
+                        </div>
+                        <span class="line-through text-[10px] md:text-base font-medium leading-tight">Domingos perdidos preparando aulas</span>
+                    </div>
+                    <div class="flex justify-center text-brand-blue/30">
+                        <i data-lucide="arrow-right" class="w-4 h-4 md:w-6 md:h-6"></i>
+                    </div>
+                    <div class="flex items-center gap-2 md:gap-3 text-slate-900 w-full justify-start">
+                        <div class="w-6 h-6 md:w-8 md:h-8 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-500 flex-shrink-0">
+                            <i data-lucide="check" class="w-3.5 h-3.5 md:w-5 md:h-5"></i>
+                        </div>
+                        <span class="text-[10px] md:text-base font-bold text-left leading-tight">Sua paz de espírito e domingos livres de volta</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+                <div class="bg-[#eff6ff] rounded-2xl p-4 md:p-6 flex flex-col items-center justify-center text-center gap-2 md:gap-4 border border-[#dbeafe] reveal" style="transition-delay: 400ms">
+                    <div class="text-2xl md:text-3xl">📚</div>
+                    <span class="text-[8px] md:text-xs font-black tracking-tight text-slate-800 uppercase">Aulas Dinâmicas</span>
+                </div>
+                <div class="bg-[#eff6ff] rounded-2xl p-4 md:p-6 flex flex-col items-center justify-center text-center gap-2 md:gap-4 border border-[#dbeafe] reveal" style="transition-delay: 500ms">
+                    <div class="text-2xl md:text-3xl">⏰</div>
+                    <span class="text-[8px] md:text-xs font-black tracking-tight text-slate-800 uppercase">Economia de Tempo</span>
+                </div>
+                <div class="bg-[#eff6ff] rounded-2xl p-4 md:p-6 flex flex-col items-center justify-center text-center gap-2 md:gap-4 border border-[#dbeafe] reveal" style="transition-delay: 600ms">
+                    <div class="text-2xl md:text-3xl">🎯</div>
+                    <span class="text-[8px] md:text-xs font-black tracking-tight text-slate-800 uppercase">Alunos Engajados</span>
+                </div>
+                <div class="bg-[#eff6ff] rounded-2xl p-4 md:p-6 flex flex-col items-center justify-center text-center gap-2 md:gap-4 border border-[#dbeafe] reveal" style="transition-delay: 700ms">
+                    <div class="text-2xl md:text-3xl">✨</div>
+                    <span class="text-[8px] md:text-xs font-black tracking-tight text-slate-800 uppercase">Resultados Visíveis</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase Section -->
+    <section class="py-16 md:py-24 px-4 bg-white overflow-hidden">
+        <div class="max-w-6xl mx-auto text-center">
+            <!-- Separator Line (Light) -->
+            <div class="w-16 h-0.5 bg-slate-100 mx-auto mb-8 rounded-full"></div>
+            
+            <h2 class="text-3xl md:text-5xl font-display font-black text-brand-blue mb-12 md:mb-20 reveal">
+                Veja o que você vai receber
+            </h2>
+
+            <div class="relative inline-block reveal">
+                <!-- Podium/Background Shape as seen in image -->
+                <div class="absolute inset-0 -m-8 md:-m-12 bg-slate-50/50 rounded-[100px] -z-10"></div>
+                
+                <!-- Physical Mobile Device Frame Wrapper -->
+                <div class="relative mx-auto w-[280px] md:w-[310px] select-none">
+                    <!-- Physical Side Buttons -->
+                    <div class="absolute -left-[3px] top-24 w-[3px] h-10 bg-slate-800 rounded-l pointer-events-none"></div>
+                    <div class="absolute -left-[3px] top-36 w-[3px] h-10 bg-slate-800 rounded-l pointer-events-none"></div>
+                    <div class="absolute -right-[3px] top-32 w-[3px] h-16 bg-slate-800 rounded-r pointer-events-none"></div>
+
+                    <!-- Phone Housing -->
+                    <div class="relative p-2.5 bg-slate-950 rounded-[3.2rem] shadow-[0_45px_90px_-15px_rgba(0,0,0,0.35)] border border-slate-800/80">
+                        <!-- Screen Container with Exact Aspect Ratio -->
+                        <div class="relative overflow-hidden w-full aspect-[720/1560] bg-black rounded-[2.5rem]">
+                            <iframe src="https://fast.wistia.net/embed/iframe/hn9oo9peq2" title="Tour pelo Material" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="absolute inset-0 w-full h-full rounded-[2.5rem] z-30"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <!-- Emotional Pain Section (White & Blue Theme) -->
+    <section class="py-16 md:py-32 px-4 bg-white overflow-hidden relative">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-2xl md:text-4xl lg:text-5xl font-display font-black text-center mb-10 md:mb-16 leading-[1.1] text-slate-900 reveal active">
+                ATÉ QUANDO VOCÊ VAI FINGIR QUE <br class="hidden md:block">
+                TEM <span class="text-brand-blue">VIDA SOCIAL</span>?
+            </h2>
+
+            <div class="grid md:grid-cols-3 gap-4 md:gap-6">
+                <!-- Card 1 -->
+                <div class="bg-blue-50/50 border border-blue-100/50 p-6 md:p-8 rounded-[1.5rem] md:rounded-[2rem] text-center flex flex-col items-center group transition-all duration-500 reveal active" style="transition-delay: 100ms">
+                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-full border border-blue-100 flex items-center justify-center mb-4 text-brand-blue bg-white group-hover:bg-brand-blue group-hover:text-white transition-all shadow-sm">
+                        <i data-lucide="calendar" class="w-6 h-6 md:w-8 md:h-8"></i>
+                    </div>
+                    <h3 class="text-base md:text-xl font-bold mb-2 tracking-tight text-slate-800">Seus domingos <br class="hidden md:block"> morrem no PC?</h3>
+                    <p class="text-slate-500 text-[11px] md:text-sm leading-relaxed max-w-[200px] mx-auto">
+                        Enquanto seus amigos fazem churrasco, você está caçando atividades.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-blue-50/50 border border-blue-100/50 p-6 md:p-10 rounded-[2rem] md:rounded-[2.5rem] text-center flex flex-col items-center group hover:bg-white hover:shadow-2xl hover:shadow-blue-500/10 hover:border-brand-blue/20 transition-all duration-500 reveal active" style="transition-delay: 200ms">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full border border-blue-100 flex items-center justify-center mb-6 md:mb-8 text-brand-blue bg-white group-hover:bg-brand-blue group-hover:text-white group-hover:scale-110 transition-all duration-500 shadow-sm">
+                        <i data-lucide="frown" class="w-7 h-7 md:w-9 md:h-9"></i>
+                    </div>
+                    <h3 class="text-lg md:text-2xl font-bold mb-3 md:mb-5 tracking-tight text-slate-800 group-hover:text-brand-blue transition-colors">Alunos bocejando <br class="hidden md:block"> na cara?</h3>
+                    <p class="text-slate-500 text-[13px] md:text-base leading-relaxed max-w-[240px] mx-auto">
+                        Não importa o quanto você se esforce, a aula parece chata e arrastada até o fim.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-blue-50/50 border border-blue-100/50 p-6 md:p-10 rounded-[2rem] md:rounded-[2.5rem] text-center flex flex-col items-center group hover:bg-white hover:shadow-2xl hover:shadow-blue-500/10 hover:border-brand-blue/20 transition-all duration-500 reveal active" style="transition-delay: 300ms">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full border border-blue-100 flex items-center justify-center mb-6 md:mb-8 text-brand-blue bg-white group-hover:bg-brand-blue group-hover:text-white group-hover:scale-110 transition-all duration-500 shadow-sm">
+                        <i data-lucide="rotate-ccw" class="w-7 h-7 md:w-9 md:h-9"></i>
+                    </div>
+                    <h3 class="text-lg md:text-2xl font-bold mb-3 md:mb-5 tracking-tight text-slate-800 group-hover:text-brand-blue transition-colors">Se sente um <br class="hidden md:block"> "enrolador"?</h3>
+                    <p class="text-slate-500 text-[13px] md:text-base leading-relaxed max-w-[240px] mx-auto">
+                        A culpa bate porque você sabe que poderia entregar mais, mas simplesmente não tem tempo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transform Classes CTA Section -->
+    <section class="py-20 sm:py-12 bg-brand-blue text-white text-center">
+        <div class="max-w-4xl mx-auto px-4">
+            <p class="text-2xl sm:text-lg md:text-xl font-bold mb-10 sm:mb-6 opacity-95">Pronto para transformar suas aulas?</p>
+            <button @click="document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' })" class="w-full max-w-[320px] sm:max-w-none sm:w-auto bg-[#009664] text-white px-10 py-6 sm:py-4 rounded-[22px] sm:rounded-xl font-black sm:font-bold text-2xl sm:text-lg md:text-xl hover:bg-[#007a51] transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-3 mx-auto shadow-2xl shadow-blue-900/40">
+                Começar Agora <i data-lucide="arrow-right" class="w-7 h-7 sm:w-5 sm:h-5 md:w-6 md:h-6"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- Features Overview Section -->
+    <section class="py-16 md:py-24 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-2xl md:text-4xl font-display font-black text-center mb-12 md:mb-20 text-slate-900 reveal active">
+                Tudo o que você precisa em <span class="text-brand-blue">um só lugar</span>
+            </h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
+                <!-- Feature 1 -->
+                <div class="bg-white border border-slate-100 p-6 rounded-3xl text-center flex flex-col items-center justify-center hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-500 group reveal active">
+                    <div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="package" class="w-6 h-6 text-brand-blue"></i>
+                    </div>
+                    <p class="text-[11px] md:text-sm font-black text-slate-800 leading-tight">500+ Dinâmicas e atividades prontas</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-white border border-slate-100 p-6 rounded-3xl text-center flex flex-col items-center justify-center hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-500 group reveal active" style="transition-delay: 50ms">
+                    <div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="users" class="w-6 h-6 text-brand-blue"></i>
+                    </div>
+                    <p class="text-[11px] md:text-sm font-black text-slate-800 leading-tight">Para todos os níveis (A1 - C1)</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-white border border-slate-100 p-6 rounded-3xl text-center flex flex-col items-center justify-center hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-500 group reveal active" style="transition-delay: 100ms">
+                    <div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="clock" class="w-6 h-6 text-brand-blue"></i>
+                    </div>
+                    <p class="text-[11px] md:text-sm font-black text-slate-800 leading-tight">Acesso vitalício</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="bg-white border border-slate-100 p-6 rounded-3xl text-center flex flex-col items-center justify-center hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-500 group reveal active" style="transition-delay: 150ms">
+                    <div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="refresh-cw" class="w-6 h-6 text-brand-blue"></i>
+                    </div>
+                    <p class="text-[11px] md:text-sm font-black text-slate-800 leading-tight">Atualizações semanais</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="bg-white border border-slate-100 p-6 rounded-3xl text-center flex flex-col items-center justify-center hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-500 group reveal active" style="transition-delay: 200ms">
+                    <div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="shield-check" class="w-6 h-6 text-brand-blue"></i>
+                    </div>
+                    <p class="text-[11px] md:text-sm font-black text-slate-800 leading-tight">Garantia de 7 dias</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="bg-white border border-slate-100 p-6 rounded-3xl text-center flex flex-col items-center justify-center hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-500 group reveal active" style="transition-delay: 250ms">
+                    <div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="headphones" class="w-6 h-6 text-brand-blue"></i>
+                    </div>
+                    <p class="text-[11px] md:text-sm font-black text-slate-800 leading-tight">Suporte ao Professor</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exclusive Bonus Section -->
+    <section class="py-12 md:py-24 px-4 bg-slate-50 overflow-hidden relative">
+        <div class="max-w-4xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-10 md:mb-16">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-brand-blue text-[10px] font-black uppercase tracking-widest mb-4 reveal active">
+                    <i data-lucide="gift" class="w-3 h-3"></i> BÔNUS EXCLUSIVOS
+                </div>
+                <h2 class="text-2xl md:text-5xl font-display font-black text-slate-900 leading-[1.1] mb-6 reveal active">
+                    BÔNUS EXCLUSIVOS <br>
+                    <span class="text-brand-blue">PARA FACILITAR SUA ROTINA</span>
+                </h2>
+                <p class="text-slate-500 font-medium text-sm md:text-base max-w-2xl mx-auto reveal active">
+                    Materiais complementares criados para ajudar professores a economizarem tempo e deixarem as aulas mais organizadas e dinâmicas.
+                </p>
+            </div>
+
+            <!-- Bonus Cards -->
+            <div class="space-y-4 md:space-y-6">
+                <!-- Bonus 01 -->
+                <div class="bg-white rounded-[1.5rem] md:rounded-[2rem] p-3 md:p-6 shadow-lg shadow-blue-500/5 border border-white relative reveal active group">
+                    <div class="absolute -top-2 -left-2 w-6 h-6 md:w-10 md:h-10 bg-brand-blue text-white rounded-full flex items-center justify-center font-black text-[10px] md:text-base shadow-lg z-20">01</div>
+                    <div class="flex flex-row items-center gap-3 md:gap-8 relative">
+                        <!-- Image Container -->
+                        <div class="w-24 sm:w-32 md:w-56 flex-shrink-0 aspect-[4/3] rounded-lg md:rounded-2xl bg-slate-50 flex items-center justify-center relative overflow-hidden border border-slate-100">
+                             <div class="relative w-full h-full flex items-center justify-center p-3 md:p-6 transform group-hover:scale-105 transition-transform duration-500">
+                                <!-- Browser Window -->
+                                <div class="relative w-full max-w-[140px] md:max-w-none aspect-[4/3] bg-white rounded-lg md:rounded-xl shadow-xl md:shadow-2xl border border-slate-100 overflow-hidden flex flex-col">
+                                    <!-- Header -->
+                                    <div class="h-3 md:h-6 bg-brand-blue flex items-center px-1.5 md:px-3 gap-1 md:gap-2">
+                                        <div class="flex gap-0.5 md:gap-1">
+                                            <div class="w-0.5 h-0.5 md:w-1.5 md:h-1.5 rounded-full bg-red-400"></div>
+                                            <div class="w-0.5 h-0.5 md:w-1.5 md:h-1.5 rounded-full bg-yellow-400"></div>
+                                            <div class="w-0.5 h-0.5 md:w-1.5 md:h-1.5 rounded-full bg-green-400"></div>
+                                        </div>
+                                        <div class="flex-1 h-0.5 md:h-1.5 bg-white/20 rounded-full"></div>
+                                    </div>
+                                    
+                                    <!-- Content -->
+                                    <div class="flex-1 p-1.5 md:p-3 flex gap-1.5 md:gap-3">
+                                        <div class="w-1/2 flex flex-col gap-1 md:gap-2 pt-1">
+                                            <span class="text-brand-blue font-black text-xs md:text-3xl leading-none">Aa</span>
+                                            <div class="w-full h-0.5 md:h-1.5 bg-slate-100 rounded-full"></div>
+                                            <div class="w-3/4 h-0.5 md:h-1.5 bg-slate-100 rounded-full"></div>
+                                            <div class="w-full h-0.5 md:h-1.5 bg-slate-100 rounded-full"></div>
+                                        </div>
+                                        <div class="w-1/2 flex items-center justify-center">
+                                            <div class="relative w-6 h-6 md:w-14 md:h-14">
+                                                <div class="absolute inset-0 rounded-full border-[3px] md:border-[6px] border-slate-50"></div>
+                                                <div class="absolute inset-0 rounded-full border-[3px] md:border-[6px] border-brand-blue border-r-transparent border-b-transparent rotate-45"></div>
+                                                <div class="absolute inset-0 rounded-full border-[3px] md:border-[6px] border-yellow-400 border-l-transparent border-t-transparent -rotate-12"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Sparkle -->
+                                <div class="absolute -top-1 md:top-2 -left-1 md:left-4 text-yellow-400">
+                                    <i data-lucide="sparkles" class="w-3 h-3 md:w-6 md:h-6 fill-yellow-400"></i>
+                                </div>
+                             </div>
+                        </div>
+                        
+                        <!-- Text Content -->
+                        <div class="flex-1 text-left">
+                            <div class="flex items-center gap-2 mb-0.5 md:mb-2">
+                                <i data-lucide="monitor" class="w-3.5 h-3.5 md:w-6 md:h-6 text-brand-blue"></i>
+                                <h3 class="text-[12px] md:text-2xl font-black text-slate-900 leading-tight">Slides Prontos Para Aula</h3>
+                            </div>
+                            <p class="text-slate-500 text-[10px] md:text-lg leading-tight md:leading-relaxed line-clamp-2 md:line-clamp-none font-medium">
+                                Slides organizados e editáveis para aplicar rapidamente sem perder horas montando apresentações.
+                            </p>
+                        </div>
+                        
+                        <!-- Arrow Button -->
+                        <div class="w-7 h-7 md:w-12 md:h-12 rounded-full bg-blue-50 text-brand-blue flex items-center justify-center shadow-sm flex-shrink-0 group-hover:bg-brand-blue group-hover:text-white transition-all duration-300">
+                            <i data-lucide="arrow-right" class="w-3.5 h-3.5 md:w-6 md:h-6"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bonus 02 -->
+                <div class="bg-white rounded-[1.5rem] md:rounded-[2rem] p-3 md:p-6 shadow-lg shadow-blue-500/5 border border-white relative reveal active group">
+                    <div class="absolute -top-2 -left-2 w-6 h-6 md:w-10 md:h-10 bg-brand-blue text-white rounded-full flex items-center justify-center font-black text-[10px] md:text-base shadow-lg z-20">02</div>
+                    <div class="flex flex-row items-center gap-3 md:gap-8 relative">
+                        <!-- Image Container -->
+                        <div class="w-24 sm:w-32 md:w-56 flex-shrink-0 aspect-[4/3] rounded-lg md:rounded-2xl bg-slate-50 flex items-center justify-center relative overflow-hidden border border-slate-100">
+                             <div class="relative w-full h-full flex items-center justify-center p-3 md:p-6 transform group-hover:scale-105 transition-transform duration-500">
+                                <!-- Paper/Card -->
+                                <div class="relative w-full max-w-[140px] md:max-w-none aspect-[4/3] bg-white rounded-lg md:rounded-xl shadow-xl md:shadow-2xl border border-slate-50 overflow-hidden flex items-center justify-center">
+                                    <!-- Background Scribbles (Decorative) -->
+                                    <div class="absolute inset-0 opacity-10">
+                                        <div class="absolute rotate-45 top-0 left-0 w-full h-full border border-blue-200 rounded-full scale-150"></div>
+                                        <div class="absolute -rotate-12 top-0 left-0 w-full h-full border border-pink-200 rounded-full scale-125"></div>
+                                    </div>
+                                    
+                                    <!-- Mind Map Elements -->
+                                    <div class="relative w-full h-full flex items-center justify-center">
+                                        <!-- Lines (Hand-drawn style) -->
+                                        <div class="absolute w-full h-full p-6">
+                                            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" fill="none">
+                                                <path d="M50 50 L25 25" stroke="#334155" stroke-width="0.5" stroke-linecap="round" stroke-dasharray="1 1" />
+                                                <path d="M50 50 L75 25" stroke="#334155" stroke-width="0.5" stroke-linecap="round" stroke-dasharray="1 1" />
+                                                <path d="M50 50 L25 75" stroke="#334155" stroke-width="0.5" stroke-linecap="round" stroke-dasharray="1 1" />
+                                                <path d="M50 50 L75 75" stroke="#334155" stroke-width="0.5" stroke-linecap="round" stroke-dasharray="1 1" />
+                                            </svg>
+                                        </div>
+
+                                        <!-- Pills -->
+                                        <!-- Top Left -->
+                                        <div class="absolute top-2 md:top-4 left-1 md:left-4 px-1.5 md:px-3 py-0.5 md:py-1.5 bg-[#22c55e] text-white rounded-lg md:rounded-xl shadow-lg transform -rotate-1">
+                                            <span class="text-[5px] md:text-[10px] font-black tracking-tight uppercase">VOCABULARY</span>
+                                        </div>
+                                        <!-- Top Right -->
+                                        <div class="absolute top-2.5 md:top-5 right-1 md:right-4 px-1.5 md:px-3 py-0.5 md:py-1.5 bg-[#fbbf24] text-white rounded-lg md:rounded-xl shadow-lg transform rotate-2">
+                                            <span class="text-[5px] md:text-[10px] font-black tracking-tight uppercase">GRAMMAR</span>
+                                        </div>
+                                        <!-- Bottom Left -->
+                                        <div class="absolute bottom-2 md:bottom-4 left-1 md:left-4 px-1.5 md:px-3 py-0.5 md:py-1.5 bg-[#f43f5e] text-white rounded-lg md:rounded-xl shadow-lg transform rotate-1">
+                                            <span class="text-[5px] md:text-[10px] font-black tracking-tight uppercase">SPEAKING</span>
+                                        </div>
+                                        <!-- Bottom Right -->
+                                        <div class="absolute bottom-2.5 md:bottom-5 right-1 md:right-4 px-1.5 md:px-3 py-0.5 md:py-1.5 bg-[#8b5cf6] text-white rounded-lg md:rounded-xl shadow-lg transform -rotate-2">
+                                            <span class="text-[5px] md:text-[10px] font-black tracking-tight uppercase">PHRASES</span>
+                                        </div>
+
+                                        <!-- Central Cloud -->
+                                        <div class="relative z-10 filter drop-shadow-2xl">
+                                            <!-- Cloud Shape -->
+                                            <div class="relative bg-white px-3 md:px-6 py-2 md:py-4 rounded-full border-2 border-slate-50 flex items-center justify-center">
+                                                <span class="text-brand-blue font-black text-[10px] md:text-2xl tracking-tighter uppercase italic leading-none">ENGLISH</span>
+                                                <!-- Cloud bumps -->
+                                                <div class="absolute -top-1 md:-top-3 left-1/4 w-3 md:w-8 h-3 md:h-8 bg-white rounded-full"></div>
+                                                <div class="absolute -top-2 md:-top-5 left-1/2 -translate-x-1/2 w-4 md:w-10 h-4 md:h-10 bg-white rounded-full"></div>
+                                                <div class="absolute -top-1 md:-top-3 right-1/4 w-3 md:w-8 h-3 md:h-8 bg-white rounded-full"></div>
+                                                <div class="absolute -bottom-1 md:-bottom-3 left-1/3 w-3 md:w-7 h-3 md:h-7 bg-white rounded-full"></div>
+                                                <div class="absolute -bottom-1 md:-bottom-3 right-1/3 w-3 md:w-7 h-3 md:h-7 bg-white rounded-full"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Decorative rays on the left -->
+                                    <div class="absolute left-1 md:left-3 top-1/2 -translate-y-1/2 flex flex-col gap-1 md:gap-2">
+                                        <div class="w-2 md:w-4 h-0.5 md:h-1 bg-brand-blue rounded-full rotate-[30deg]"></div>
+                                        <div class="w-2 md:w-4 h-0.5 md:h-1 bg-brand-blue rounded-full"></div>
+                                        <div class="w-2 md:w-4 h-0.5 md:h-1 bg-brand-blue rounded-full -rotate-[30deg]"></div>
+                                    </div>
+
+                                    <!-- Heart Icon bottom right -->
+                                    <div class="absolute bottom-2 right-2 text-[#f43f5e]">
+                                        <i data-lucide="heart" class="w-2 h-2 md:w-5 md:h-5 fill-none stroke-[3]"></i>
+                                    </div>
+                                </div>
+                             </div>
+                        </div>
+                        
+                        <!-- Text Content -->
+                        <div class="flex-1 text-left">
+                            <div class="flex items-center gap-2 mb-0.5 md:mb-2">
+                                <i data-lucide="brain" class="w-3.5 h-3.5 md:w-6 md:h-6 text-brand-blue"></i>
+                                <h3 class="text-[12px] md:text-2xl font-black text-slate-900 leading-tight">Mapas Mentais de Inglês</h3>
+                            </div>
+                            <p class="text-slate-500 text-[10px] md:text-lg leading-tight md:leading-relaxed line-clamp-2 md:line-clamp-none font-medium">
+                                Materiais visuais para revisão, memorização e explicações mais simples e dinâmicas.
+                            </p>
+                        </div>
+                        
+                        <!-- Arrow Button -->
+                        <div class="w-7 h-7 md:w-12 md:h-12 rounded-full bg-blue-50 text-brand-blue flex items-center justify-center shadow-sm flex-shrink-0 group-hover:bg-brand-blue group-hover:text-white transition-all duration-300">
+                            <i data-lucide="arrow-right" class="w-3.5 h-3.5 md:w-6 md:h-6"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bonus 03 -->
+                <div class="bg-white rounded-[1.5rem] md:rounded-[2rem] p-3 md:p-6 shadow-lg shadow-blue-500/5 border border-white relative reveal active group">
+                    <div class="absolute -top-2 -left-2 w-6 h-6 md:w-10 md:h-10 bg-brand-blue text-white rounded-full flex items-center justify-center font-black text-[10px] md:text-base shadow-lg z-20">03</div>
+                    <div class="flex flex-row items-center gap-3 md:gap-8 relative">
+                        <!-- Image Container -->
+                        <div class="w-24 sm:w-32 md:w-56 flex-shrink-0 aspect-[4/3] rounded-lg md:rounded-2xl bg-slate-50 flex items-center justify-center relative overflow-hidden border border-slate-100">
+                             <div class="relative w-full h-full flex items-center justify-center p-2 md:p-4 transform group-hover:scale-110 transition-transform duration-500">
+                                <!-- Spiral Notebook -->
+                                <div class="relative w-[50px] md:w-[120px] aspect-[4/5] bg-[#22c55e] rounded-lg md:rounded-xl shadow-2xl border-l-[3px] md:border-l-[8px] border-emerald-700 flex flex-col items-center p-1.5 md:p-4">
+                                    <!-- Spirals -->
+                                    <div class="absolute -left-1 md:-left-2 top-0 bottom-0 py-2 md:py-4 flex flex-col justify-between z-20">
+                                        <div class="w-2 md:w-4 h-0.5 md:h-1 bg-slate-800 rounded-full"></div>
+                                        <div class="w-2 md:w-4 h-0.5 md:h-1 bg-slate-800 rounded-full"></div>
+                                        <div class="w-2 md:w-4 h-0.5 md:h-1 bg-slate-800 rounded-full"></div>
+                                        <div class="w-2 md:w-4 h-0.5 md:h-1 bg-slate-800 rounded-full"></div>
+                                        <div class="w-2 md:w-4 h-0.5 md:h-1 bg-slate-800 rounded-full"></div>
+                                        <div class="w-2 md:w-4 h-0.5 md:h-1 bg-slate-800 rounded-full"></div>
+                                        <div class="w-2 md:w-4 h-0.5 md:h-1 bg-slate-800 rounded-full"></div>
+                                    </div>
+                                    
+                                    <!-- Cover Label -->
+                                    <div class="w-full h-full bg-white rounded md:rounded-lg flex flex-col items-center justify-center text-center p-1 md:p-2 border border-emerald-100">
+                                        <span class="text-emerald-500 font-black text-[5px] md:text-[13px] leading-tight uppercase">PLANO<br>ANUAL</span>
+                                        <i data-lucide="check" class="w-2 h-2 md:w-5 md:h-5 text-emerald-500 mt-0.5 md:mt-2 stroke-[4]"></i>
+                                    </div>
+
+                                    <!-- Tabs -->
+                                    <div class="absolute -right-1 md:-right-2 top-2 md:top-4 flex flex-col gap-0.5 md:gap-2">
+                                        <div class="w-1 md:w-2 h-2 md:h-4 bg-pink-500 rounded-r"></div>
+                                        <div class="w-1 md:w-2 h-2 md:h-4 bg-yellow-400 rounded-r"></div>
+                                        <div class="w-1 md:w-2 h-2 md:h-4 bg-blue-500 rounded-r"></div>
+                                        <div class="w-1 md:w-2 h-2 md:h-4 bg-purple-500 rounded-r"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Pencil -->
+                                <div class="absolute right-0 md:right-2 top-1/2 -translate-y-1/2 rotate-12 flex flex-col items-center">
+                                    <div class="w-1.5 md:w-4 h-8 md:h-24 bg-[#fbbf24] rounded-t-sm md:rounded-t shadow-lg relative">
+                                        <!-- Eraser -->
+                                        <div class="absolute -top-1 md:-top-3 inset-x-0 h-1.5 md:h-4 bg-[#f472b6] rounded-t-sm md:rounded-t border-b border-slate-400/30"></div>
+                                        <!-- Silver bits -->
+                                        <div class="absolute top-0.5 md:top-1 inset-x-0 h-0.5 md:h-1.5 bg-slate-300"></div>
+                                        <!-- Point -->
+                                        <div class="absolute -bottom-1 md:-bottom-3 inset-x-0 h-0 md:h-0 border-l-[3px] md:border-l-[8px] border-l-transparent border-r-[3px] md:border-r-[8px] border-r-transparent border-t-[4px] md:border-t-[12px] border-t-[#fef3c7]">
+                                            <div class="absolute -top-1 w-full h-0.5 md:h-1.5 bg-slate-900"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Decor -->
+                                <div class="absolute bottom-2 right-6 md:bottom-6 md:right-16 text-emerald-500">
+                                    <i data-lucide="sparkle" class="w-2 h-2 md:w-5 md:h-5 fill-emerald-500"></i>
+                                </div>
+                                <div class="absolute top-8 left-2 md:top-16 md:left-4 text-emerald-500 opacity-20 rotate-12">
+                                    <div class="w-1 md:w-3 h-0.5 md:h-1 bg-current rounded-full mb-0.5 md:mb-1"></div>
+                                    <div class="w-1 md:w-3 h-0.5 md:h-1 bg-current rounded-full mb-0.5 md:mb-1"></div>
+                                    <div class="w-1 md:w-3 h-0.5 md:h-1 bg-current rounded-full"></div>
+                                </div>
+                             </div>
+                        </div>
+                        
+                        <!-- Text Content -->
+                        <div class="flex-1 text-left">
+                            <div class="flex items-center gap-2 mb-0.5 md:mb-2">
+                                <i data-lucide="book-open" class="w-3.5 h-3.5 md:w-6 md:h-6 text-brand-blue"></i>
+                                <h3 class="text-[12px] md:text-2xl font-black text-slate-900 leading-tight">Guia de Planejamento Escolar</h3>
+                            </div>
+                            <p class="text-slate-500 text-[10px] md:text-lg leading-tight md:leading-relaxed line-clamp-2 md:line-clamp-none font-medium">
+                                Planejamento completo do 1º ao 9º ano com ideias de conteúdos e organização pedagógica.
+                            </p>
+                        </div>
+                        
+                        <!-- Arrow Button -->
+                        <div class="w-7 h-7 md:w-12 md:h-12 rounded-full bg-blue-50 text-brand-blue flex items-center justify-center shadow-sm flex-shrink-0 group-hover:bg-brand-blue group-hover:text-white transition-all duration-300">
+                            <i data-lucide="arrow-right" class="w-3.5 h-3.5 md:w-6 md:h-6"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bonus 04 -->
+                <div class="bg-white rounded-[1.5rem] md:rounded-[2rem] p-3 md:p-6 shadow-lg shadow-blue-500/5 border border-white relative reveal active group">
+                    <div class="absolute -top-2 -left-2 w-6 h-6 md:w-10 md:h-10 bg-brand-blue text-white rounded-full flex items-center justify-center font-black text-[10px] md:text-base shadow-lg z-20">04</div>
+                    <div class="flex flex-row items-center gap-3 md:gap-8 relative">
+                        <!-- Image Container -->
+                        <div class="w-24 sm:w-32 md:w-56 flex-shrink-0 aspect-[4/3] rounded-lg md:rounded-2xl bg-slate-50 flex items-center justify-center relative overflow-hidden border border-slate-100">
+                             <div class="relative w-full h-full flex items-center justify-center p-4 md:p-8 transform group-hover:scale-105 transition-transform duration-500">
+                                <!-- Red Box (Open) -->
+                                <div class="relative w-[65px] md:w-[150px] h-[45px] md:h-[95px] bg-[#ef4444] rounded-lg md:rounded-2xl shadow-xl border-b-[3px] md:border-b-[8px] border-red-700 flex flex-col justify-end">
+                                    <!-- Inside/Back Lid -->
+                                    <div class="absolute -top-[20px] md:-top-[45px] inset-x-0 h-[30px] md:h-[65px] bg-[#dc2626] rounded-t-lg md:rounded-t-2xl border-t-[1px] md:border-t-[2px] border-red-400 opacity-90 shadow-inner"></div>
+                                    
+                                    <!-- Cards sticking out -->
+                                    <div class="absolute -top-[35px] md:-top-[80px] inset-x-0 flex justify-center items-end gap-0.5 md:gap-1.5 px-1 md:px-2">
+                                        <!-- Card: Blue Speaking Time -->
+                                        <div class="w-[18px] md:w-[42px] h-[28px] md:h-[65px] bg-white rounded-sm md:rounded-md shadow-lg transform -rotate-12 translate-y-2 flex flex-col items-center justify-center p-0.5 md:p-1 border border-slate-50">
+                                            <span class="text-[#3b82f6] font-black text-[2.5px] md:text-[6px] leading-tight uppercase text-center">SPEAKING<br>TIME</span>
+                                            <div class="w-1.5 md:w-4 h-1.5 md:h-4 bg-blue-50 rounded-sm mt-0.5 md:mt-1 border border-blue-100"></div>
+                                        </div>
+                                        <!-- Card: Green Speaking Time -->
+                                        <div class="w-[18px] md:w-[42px] h-[30px] md:h-[70px] bg-white rounded-sm md:rounded-md shadow-lg transform -rotate-6 translate-y-1 flex flex-col items-center justify-center p-0.5 md:p-1 border border-slate-50 z-10">
+                                            <span class="text-[#22c55e] font-black text-[2.5px] md:text-[6px] leading-tight uppercase text-center">SPEAKING<br>TIME</span>
+                                            <div class="w-1.5 md:w-4 h-1.5 md:h-4 bg-green-50 rounded-sm mt-0.5 md:mt-1 border border-green-100"></div>
+                                        </div>
+                                        <!-- Card: Let's Talk! (Center) -->
+                                        <div class="w-[24px] md:w-[55px] h-[35px] md:h-[85px] bg-white rounded-sm md:rounded-md shadow-2xl z-20 flex flex-col items-center justify-center p-0.5 md:p-1 border border-slate-50 translate-y-3">
+                                            <span class="text-[#ef4444] font-black text-[3px] md:text-[8px] leading-tight uppercase text-center">LET'S<br>TALK!</span>
+                                            <i data-lucide="check" class="w-1 md:w-3 h-1 md:h-3 text-[#ef4444] mt-0.5 md:mt-2 stroke-[4]"></i>
+                                        </div>
+                                        <!-- Card: Purple Role Play -->
+                                        <div class="w-[18px] md:w-[42px] h-[28px] md:h-[65px] bg-white rounded-sm md:rounded-md shadow-lg transform rotate-12 translate-y-2 flex flex-col items-center justify-center p-0.5 md:p-1 border border-slate-50">
+                                            <span class="text-[#8b5cf6] font-black text-[2.5px] md:text-[6px] leading-tight uppercase text-center">ROLE<br>PLAY</span>
+                                            <div class="w-1.5 md:w-4 h-1.5 md:h-4 bg-purple-50 rounded-sm mt-0.5 md:mt-1 border border-purple-100"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Front Latch -->
+                                    <div class="relative w-full h-[55%] bg-[#ef4444] rounded-b-lg md:rounded-b-2xl flex items-center justify-center border-t border-red-500/30">
+                                        <div class="w-5 md:w-12 h-3.5 md:h-9 bg-white/20 rounded-md border border-white/30 flex items-center justify-center">
+                                            <div class="w-1.5 md:w-4 h-1.5 md:h-4 bg-white/40 rounded-sm"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Blue Stopwatch -->
+                                <div class="absolute bottom-1 md:bottom-2 -right-0.5 md:right-4 w-8 md:w-20 h-8 md:h-20 bg-[#3b82f6] rounded-full border-[2px] md:border-[5px] border-white shadow-2xl flex items-center justify-center z-30">
+                                    <div class="w-[85%] h-[85%] bg-white rounded-full flex flex-col items-center justify-center relative">
+                                        <!-- Clock Details -->
+                                        <div class="absolute inset-0">
+                                            <svg class="w-full h-full p-0.5 md:p-1 opacity-10" viewBox="0 0 100 100">
+                                                <circle cx="50" cy="50" r="45" stroke="currentColor" fill="none" stroke-width="2" stroke-dasharray="1 3" />
+                                            </svg>
+                                        </div>
+                                        <!-- Hands -->
+                                        <div class="w-0.5 md:w-1 h-3 md:h-7 bg-slate-800 rounded-full origin-bottom translate-y-[-50%] rotate-[10deg]"></div>
+                                        <div class="w-0.5 md:w-1 h-2 md:h-5 bg-red-500 rounded-full origin-left absolute top-1/2 left-1/2 rotate-[70deg]"></div>
+                                        <!-- Pin -->
+                                        <div class="absolute -top-1.5 md:-top-4 w-2 md:w-5 h-1 md:h-3 bg-[#3b82f6] rounded-t-lg"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Action Rays -->
+                                <div class="absolute top-[20%] -left-1 md:left-2 flex flex-col gap-1 md:gap-2">
+                                    <div class="w-2 md:w-5 h-0.5 md:h-1 bg-[#ef4444] rounded-full rotate-[45deg]"></div>
+                                    <div class="w-2 md:w-5 h-0.5 md:h-1 bg-[#ef4444] rounded-full"></div>
+                                    <div class="w-2 md:w-5 h-0.5 md:h-1 bg-[#ef4444] rounded-full -rotate-[45deg]"></div>
+                                </div>
+                                <div class="absolute top-[20%] -right-1 md:right-2 flex flex-col gap-1 md:gap-2 scale-x-[-1]">
+                                    <div class="w-2 md:w-5 h-0.5 md:h-1 bg-[#ef4444] rounded-full rotate-[45deg]"></div>
+                                    <div class="w-2 md:w-5 h-0.5 md:h-1 bg-[#ef4444] rounded-full"></div>
+                                    <div class="w-2 md:w-5 h-0.5 md:h-1 bg-[#ef4444] rounded-full -rotate-[45deg]"></div>
+                                </div>
+                             </div>
+                        </div>
+                        
+                        <!-- Text Content -->
+                        <div class="flex-1 text-left">
+                            <div class="flex items-center gap-2 mb-0.5 md:mb-2">
+                                <i data-lucide="message-circle" class="w-3.5 h-3.5 md:w-6 md:h-6 text-brand-blue"></i>
+                                <h3 class="text-[12px] md:text-2xl font-black text-slate-900 leading-tight">Speaking Activities</h3>
+                            </div>
+                            <p class="text-slate-500 text-[10px] md:text-lg leading-tight md:leading-relaxed line-clamp-2 md:line-clamp-none font-medium">
+                                Atividades de conversação e exercícios práticos para estimular a participação dos alunos.
+                            </p>
+                        </div>
+                        
+                        <!-- Arrow Button -->
+                        <div class="w-7 h-7 md:w-12 md:h-12 rounded-full bg-blue-50 text-brand-blue flex items-center justify-center shadow-sm flex-shrink-0 group-hover:bg-brand-blue group-hover:text-white transition-all duration-300">
+                            <i data-lucide="arrow-right" class="w-3.5 h-3.5 md:w-6 md:h-6"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bonus Value Card -->
+            <div class="mt-8 md:mt-16 p-8 md:p-14 rounded-[2rem] md:rounded-[3rem] bg-[#1d5cff] flex flex-col items-center justify-center text-center reveal active relative overflow-hidden shadow-2xl shadow-blue-500/30">
+                <!-- Ornament Blob top right -->
+                <div class="absolute -top-10 -right-10 w-32 md:w-64 h-32 md:h-64 bg-white opacity-10 rounded-full blur-2xl"></div>
+                <div class="absolute top-2 md:top-8 right-2 md:right-12 w-20 md:w-40 h-20 md:h-40 bg-white opacity-5 rounded-full"></div>
+
+                <!-- Text Content -->
+                <div class="relative z-10 flex flex-col items-center">
+                    <span class="text-white text-[8px] md:text-sm font-black tracking-[0.25em] uppercase mb-1 md:mb-3 opacity-90">VALOR TOTAL DOS BÔNUS</span>
+                    
+                    <div class="relative mb-3 md:mb-6">
+                        <span class="text-white text-4xl md:text-[72px] font-black italic tracking-tighter opacity-70">R$ 67,00</span>
+                        <div class="absolute top-1/2 left-[-5%] w-[110%] h-0.5 md:h-1 bg-white opacity-80 rounded-full"></div>
+                    </div>
+
+                    <div class="flex flex-row items-center justify-center gap-1.5 md:gap-4 text-white text-[13px] md:text-[38px] font-black tracking-tighter">
+                        <span class="leading-none">Inclusos</span>
+                        <div class="bg-white px-2 md:px-5 py-1 md:py-2.5 rounded-md md:rounded-xl shadow-xl transform -rotate-1 flex items-center justify-center">
+                            <span class="text-[#1d5cff] leading-none">GRÁTIS</span>
+                        </div>
+                        <span class="leading-none">no Pacote Completo!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Carousel Section -->
+    <section class="py-8 md:py-16 px-4 bg-slate-50 overflow-hidden relative" x-data="{ 
+        active: 0, 
+        slides: [
+            '/prova-social-01.png',
+            '/prova-social-02.png',
+            '/prova-social-03.png',
+            '/prova-social-04.png',
+            '/prova-social-05.png'
+        ],
+        touchStartX: 0,
+        touchEndX: 0,
+        next() { this.active = (this.active + 1) % this.slides.length; },
+        prev() { this.active = (this.active - 1 + this.slides.length) % this.slides.length; },
+        handleTouchStart(e) {
+            this.touchStartX = e.changedTouches[0].screenX;
+        },
+        handleTouchEnd(e) {
+            this.touchEndX = e.changedTouches[0].screenX;
+            this.handleSwipe();
+        },
+        handleSwipe() {
+            if (this.touchEndX < this.touchStartX - 40) this.next();
+            if (this.touchEndX > this.touchStartX + 40) this.prev();
+        }
+    }">
+        <!-- Decorative Background Elements -->
+        <div class="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
+            <!-- Pink Diagonal Strip -->
+            <div class="w-[200%] h-48 md:h-96 bg-pink-100/60 absolute top-1/2 -translate-y-1/2 rotate-[-12deg] transform-gpu"></div>
+            
+            <!-- Floating Shapes -->
+            <div class="absolute top-[10%] left-[5%] text-pink-300 rotate-12 opacity-40"><i data-lucide="circle" class="w-8 h-8 md:w-16 md:h-16"></i></div>
+            <div class="absolute top-[20%] right-[8%] text-blue-200 -rotate-12 opacity-50"><i data-lucide="x" class="w-12 h-12 md:w-24 md:h-24"></i></div>
+            <div class="absolute bottom-[20%] left-[10%] text-blue-100 rotate-45 opacity-60"><i data-lucide="plus" class="w-10 h-10 md:w-20 md:h-20"></i></div>
+            <div class="absolute bottom-[10%] right-[5%] text-pink-200 opacity-40"><i data-lucide="square" class="w-8 h-8 md:w-14 md:h-14"></i></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto text-center relative z-10 reveal active">
+            <p class="text-slate-500 font-medium text-[12px] md:text-xl mb-4 italic max-w-2xl mx-auto leading-relaxed">
+                Mas não acredite só na gente — veja os resultados de quem já usa em sala de aula:
+            </p>
+            <h2 class="text-3xl md:text-[64px] font-display font-black text-brand-blue mb-12 md:mb-24 tracking-tight leading-tight">O que dizem nossos clientes</h2>
+            
+            <div class="relative max-w-lg mx-auto" 
+                 @touchstart="handleTouchStart($event)" 
+                 @touchend="handleTouchEnd($event)">
+                
+                <!-- Navigation Arrows -->
+                <button @click="prev()" 
+                        class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 md:-translate-x-20 w-12 h-12 md:w-16 md:h-16 bg-white rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.1)] flex items-center justify-center text-brand-blue hover:bg-slate-50 transition-all z-40 border border-slate-100 group">
+                    <i data-lucide="chevron-left" class="w-6 h-6 md:w-8 md:h-8 group-hover:-translate-x-1 transition-transform"></i>
+                </button>
+                <button @click="next()" 
+                        class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 md:translate-x-20 w-12 h-12 md:w-16 md:h-16 bg-white rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.1)] flex items-center justify-center text-brand-blue hover:bg-slate-50 transition-all z-40 border border-slate-100 group">
+                    <i data-lucide="chevron-right" class="w-6 h-6 md:w-8 md:h-8 group-hover:translate-x-1 transition-transform"></i>
+                </button>
+
+                <!-- Card Container -->
+                <div class="relative aspect-[9/16] bg-white rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-[0_40px_100px_-20px_rgba(0,0,0,0.15)] border border-slate-100 z-10 transition-all duration-500 hover:shadow-2xl reveal active">
+                    <template x-for="(slide, index) in slides" :key="index">
+                        <div x-show="active === index" 
+                             x-transition:enter="transition duration-500 ease-out"
+                             x-transition:enter-start="opacity-0 scale-95"
+                             x-transition:enter-end="opacity-100 scale-100"
+                             class="absolute inset-0 flex items-center justify-center bg-white">
+                            <img :src="slide" 
+                                 :alt="'Depoimento ' + (index + 1)" 
+                                 class="w-full h-full object-cover"
+                                 referrerpolicy="no-referrer">
+                        </div>
+                    </template>
+                </div>
+
+                <!-- Dots Indicator -->
+                <div class="flex justify-center gap-3 mt-12">
+                    <template x-for="(slide, index) in slides" :key="index">
+                        <button @click="active = index" 
+                                :class="active === index ? 'w-12 bg-brand-blue shadow-lg shadow-blue-500/20' : 'w-3 bg-slate-200 hover:bg-slate-300'"
+                                class="h-3 rounded-full transition-all duration-500"></button>
+                    </template>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-8 md:py-16 px-4 md:px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-10 md:mb-16 max-w-4xl mx-auto space-y-4">
+                <p class="text-slate-500 italic text-sm md:text-base font-medium">Você já viu o que tem lá dentro. Agora...</p>
+                <h2 class="text-3xl sm:text-4xl md:text-6xl font-display font-black tracking-tight text-slate-900 leading-[1.15]">
+                    Quanto vale o seu domingo de volta?
+                </h2>
+                <p class="text-slate-500 text-sm sm:text-base md:text-lg font-medium">
+                    Acesso completo por um preço que cabe no seu bolso.
+                </p>
+                
+                <div class="flex flex-wrap justify-center items-center gap-2 md:gap-4 pt-4 md:pt-6">
+                    <div class="flex items-center gap-1.5 md:gap-2 text-blue-600 font-extrabold text-[9px] md:text-[11px] tracking-wider uppercase border border-blue-100 bg-blue-50/40 px-3 md:px-4 py-1.5 md:py-2 rounded-full shadow-sm">
+                        <i data-lucide="message-circle" class="w-3.5 h-3.5 text-blue-500"></i>
+                        <span>ENVIADO NO SEU E-MAIL E WHATSAPP</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 md:gap-2 text-blue-600 font-extrabold text-[9px] md:text-[11px] tracking-wider uppercase border border-blue-100 bg-blue-50/40 px-3 md:px-4 py-1.5 md:py-2 rounded-full shadow-sm">
+                        <i data-lucide="printer" class="w-3.5 h-3.5 text-blue-500"></i>
+                        <span>PODE SER IMPRESSO</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 md:gap-2 text-blue-600 font-extrabold text-[9px] md:text-[11px] tracking-wider uppercase border border-blue-100 bg-blue-50/40 px-3 md:px-4 py-1.5 md:py-2 rounded-full shadow-sm">
+                        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-blue-500"></i>
+                        <span>GARANTIA DE 7 DIAS</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row items-stretch justify-center gap-8 max-w-5xl mx-auto">
+                <!-- Pacote Básico Updated -->
+                <div class="flex-1 bg-white border border-slate-100 rounded-[2.5rem] p-8 flex flex-col shadow-sm relative overflow-hidden">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-black text-slate-800">Pacote Básico</h3>
+                        
+                            <div class="mt-4 flex flex-col items-center">
+                                <span class="text-slate-400 line-through text-sm font-bold italic">R$ 37,90</span>
+                                <div class="flex items-center text-emerald-500 -mt-1">
+                                    <span class="text-4xl font-black">R$</span>
+                                    <span class="text-7xl font-black tracking-tighter">10</span>
+                                </div>
+                                <span class="text-slate-500 text-sm font-bold mt-1">Pagamento único</span>
+                            </div>
+
+                        <div class="mt-4 inline-block bg-emerald-50 px-4 py-1.5 rounded-full text-emerald-600 text-[10px] font-black uppercase tracking-wider">
+                            ECONOMIZE R$ 27,90
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 mb-8 flex-1">
+                        <div class="flex gap-3 items-center text-slate-700 font-bold text-sm">
+                            <i data-lucide="check" class="w-5 h-5 text-emerald-500"></i>
+                            <span>400+ dinâmicas de inglês prontas</span>
+                        </div>
+                        <div class="flex gap-3 items-center text-slate-700 font-bold text-sm">
+                            <i data-lucide="check" class="w-5 h-5 text-emerald-500"></i>
+                            <span>200 Atividades Interativas para Imprimir</span>
+                        </div>
+                        <div class="flex gap-3 items-center text-slate-700 font-bold text-sm">
+                            <div class="text-emerald-500 font-black text-xl italic leading-none">∞</div>
+                            <span>Acesso Vitalício</span>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-50">
+                            <p class="text-[10px] font-black text-slate-300 uppercase tracking-widest mb-4">NÃO INCLUSOS NESTE PACOTE:</p>
+                            <ul class="space-y-3">
+                                <li class="flex gap-3 items-center text-slate-300 font-medium text-xs line-through opacity-70">
+                                    <i data-lucide="x" class="w-4 h-4 flex-shrink-0"></i>
+                                    <span>250+ Flashcards de Vocabulário</span>
+                                </li>
+                                <li class="flex gap-3 items-center text-slate-300 font-medium text-xs line-through opacity-70">
+                                    <i data-lucide="x" class="w-4 h-4 flex-shrink-0"></i>
+                                    <span>Kit Inglês Interativo</span>
+                                </li>
+                                <li class="flex gap-3 items-center text-slate-300 font-medium text-xs line-through opacity-70">
+                                    <i data-lucide="x" class="w-4 h-4 flex-shrink-0"></i>
+                                    <span>Guia de Planejamento</span>
+                                </li>
+                                <li class="flex gap-3 items-center text-slate-300 font-medium text-xs line-through opacity-70">
+                                    <i data-lucide="x" class="w-4 h-4 flex-shrink-0"></i>
+                                    <span>Kit de Aulas de Emergência</span>
+                                </li>
+                                <li class="flex gap-3 items-center text-slate-300 font-medium text-xs line-through opacity-70">
+                                    <i data-lucide="x" class="w-4 h-4 flex-shrink-0"></i>
+                                    <span>Slides Prontos para Aula</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Footer Info Box -->
+                    <div class="bg-emerald-50/50 border border-emerald-100 rounded-2xl p-4 mb-6 flex items-start gap-3">
+                        <i data-lucide="download" class="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5"></i>
+                        <p class="text-[10px] md:text-[11px] font-black text-slate-700 leading-tight">
+                            Receba o link de download instantaneamente no seu e-mail e WhatsApp.
+                        </p>
+                    </div>
+
+                    <button @click="showDiscountModal = true" class="w-full bg-[#22c55e] text-white py-5 rounded-2xl font-black text-lg shadow-xl shadow-emerald-500/20 transition-all transform hover:-translate-y-1 active:scale-95">
+                        Quero o pacote básico
+                    </button>
+                </div>
+
+                <!-- Pacote Completo Updated -->
+                <div class="flex-1 bg-white border-2 border-brand-blue rounded-[2.5rem] flex flex-col shadow-2xl relative overflow-hidden transform scale-[1.02] z-20">
+                    <div class="bg-orange-500 text-white py-1.5 text-center text-[10px] font-black uppercase tracking-widest">
+                        ⭐ MELHOR ESCOLHA ⭐
+                    </div>
+                    
+                    <div class="p-6 md:p-8 flex flex-col flex-1">
+                        <div class="text-center mb-4">
+                            <h3 class="text-2xl font-black text-slate-800">Pacote Completo</h3>
+                            
+                            <div class="mt-3 flex flex-col items-center">
+                                <span class="text-slate-400 line-through text-xs font-bold italic">R$ 97,90</span>
+                                <div class="flex items-center text-emerald-500 -mt-1">
+                                    <span class="text-3xl font-black">R$</span>
+                                    <span class="text-6xl font-black tracking-tighter">27,90</span>
+                                </div>
+                                <span class="text-slate-500 text-xs font-bold mt-1">Pagamento único</span>
+                            </div>
+
+                            <div class="mt-3 inline-block bg-blue-50 px-4 py-1 rounded-full text-blue-600 text-[9px] font-black uppercase tracking-wider">
+                                🔥 ECONOMIZE R$ 70,00
+                            </div>
+                        </div>
+
+                        <div class="space-y-3 mb-6">
+                            <div class="flex gap-2 items-center text-slate-700 font-bold text-xs leading-tight">
+                                <i data-lucide="check" class="w-4 h-4 text-emerald-500 flex-shrink-0"></i>
+                                <span>Tudo do Pacote Básico (400+ Dinâmicas + 200 Atividades Interativas) + Bônus Exclusivos</span>
+                            </div>
+                            <div class="flex gap-2 items-center text-slate-700 font-bold text-xs leading-tight">
+                                <i data-lucide="check" class="w-4 h-4 text-emerald-500 flex-shrink-0"></i>
+                                <span>Atualizações semanais com novos materiais</span>
+                            </div>
+                            <div class="flex gap-2 items-center text-slate-700 font-bold text-xs leading-tight">
+                                <i data-lucide="check" class="w-4 h-4 text-emerald-500 flex-shrink-0"></i>
+                                <span>Suporte Prioritário VIP</span>
+                            </div>
+                            <div class="flex gap-2 items-center text-slate-700 font-bold text-xs leading-tight">
+                                <div class="text-emerald-500 font-black text-lg italic leading-none flex-shrink-0">∞</div>
+                                <span>Acesso vitalício ao material principal e bônus</span>
+                            </div>
+                        </div>
+
+                        <!-- Bonus Box -->
+                        <div class="bg-blue-50/50 rounded-[2rem] p-4 mb-6 border border-blue-100">
+                            <p class="text-[9px] font-black text-blue-600 uppercase tracking-widest mb-3">
+                                🎁 BÔNUS EXCLUSIVOS (VALOR: R$ 67,00 POR R$ 0,00):
+                            </p>
+                            <ul class="space-y-1.5">
+                                <li class="bg-white/80 backdrop-blur-sm rounded-xl p-2.5 flex items-center gap-3 text-slate-700 font-bold text-[11px] shadow-sm shadow-blue-500/5">
+                                    <span class="text-base">📽️</span>
+                                    <span>Slides Prontos Para Aula</span>
+                                </li>
+                                <li class="bg-white/80 backdrop-blur-sm rounded-xl p-2.5 flex items-center gap-3 text-slate-700 font-bold text-[11px] shadow-sm shadow-blue-500/5">
+                                    <span class="text-base">🧠</span>
+                                    <span>Mapas Mentais de Inglês</span>
+                                </li>
+                                <li class="bg-white/80 backdrop-blur-sm rounded-xl p-2.5 flex items-center gap-3 text-slate-700 font-bold text-[11px] shadow-sm shadow-blue-500/5">
+                                    <span class="text-base">📅</span>
+                                    <span>Guia de Planejamento Escolar</span>
+                                </li>
+                                <li class="bg-white/80 backdrop-blur-sm rounded-xl p-2.5 flex items-center gap-3 text-slate-700 font-bold text-[11px] shadow-sm shadow-blue-500/5">
+                                    <span class="text-base">🗣️</span>
+                                    <span>Speaking Activities</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-auto">
+                            <!-- Footer Info Box -->
+                            <div class="bg-emerald-50/50 border border-emerald-100 rounded-2xl p-3 mb-5 flex items-start gap-2">
+                                <i data-lucide="download" class="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5"></i>
+                                <p class="text-[9px] font-black text-slate-700 leading-tight">
+                                    Receba o link de download instantaneamente no seu e-mail e WhatsApp.
+                                </p>
+                            </div>
+
+                            <button onclick="window.location.href = 'https://pay.wiapy.com/R4PqF903ro'" class="w-full bg-[#22c55e] text-white py-4 rounded-2xl font-black text-base shadow-xl shadow-emerald-500/20 transition-all transform hover:-translate-y-1 active:scale-95 cursor-pointer">
+                                Quero o Pacote Completo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantee Section -->
+    <section class="py-16 px-4 md:px-6 bg-slate-50/50">
+        <div class="max-w-3xl mx-auto relative bg-white border-2 border-blue-600 rounded-[1.5rem] md:rounded-[2rem] p-8 md:p-12 text-center shadow-lg shadow-blue-500/5">
+            <!-- Shield badge positioned overlapping the top border -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 bg-blue-600 rounded-full flex items-center justify-center shadow-md border-4 border-white">
+                <i data-lucide="shield-check" class="w-6 h-6 md:w-7 md:h-7 text-white"></i>
+            </div>
+            
+            <div class="space-y-6 pt-2">
+                <h2 class="text-2xl md:text-3xl font-display font-black text-blue-900">
+                    Garantia Incondicional de 7 Dias
+                </h2>
+                
+                <p class="text-slate-600 text-sm md:text-base leading-relaxed max-w-2xl mx-auto font-medium">
+                    Se por qualquer motivo você não ficar satisfeito com o material, basta enviar um e-mail em até 7 dias que devolvemos <strong class="text-slate-900 font-extrabold">100% do seu dinheiro</strong>. Sem perguntas, sem burocracia.
+                </p>
+                
+                <div class="flex flex-wrap justify-center items-center gap-4 md:gap-8 pt-4 border-t border-slate-100 text-[10px] md:text-xs font-black tracking-wider uppercase text-emerald-600">
+                    <div class="flex items-center gap-1.5">
+                        <i data-lucide="check" class="w-3.5 h-3.5 stroke-[3]"></i>
+                        <span>Reembolso Total</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <i data-lucide="check" class="w-3.5 h-3.5 stroke-[3]"></i>
+                        <span>Sem Perguntas</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <i data-lucide="check" class="w-3.5 h-3.5 stroke-[3]"></i>
+                        <span>Processo Rápido</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Author Section -->
+    <section class="py-16 px-4 md:px-6">
+        <div class="max-w-xl mx-auto">
+            <div class="bg-white border-2 border-blue-500 rounded-[2rem] p-6 md:p-8 text-center shadow-xl shadow-blue-500/5 space-y-6">
+                <div class="space-y-2">
+                    <h2 class="text-3xl md:text-4xl font-display font-black text-slate-800">
+                        Sobre a Autora desse Material
+                    </h2>
+                    <h3 class="text-2xl md:text-3xl font-display font-extrabold text-blue-600">
+                        Rosangela Barbosa
+                    </h3>
+                    <p class="text-slate-500 italic text-sm md:text-base font-semibold">
+                        Educadora de Inglês Especialista
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-3 gap-2 md:gap-4">
+                    <div class="bg-slate-50 border border-slate-100/80 rounded-2xl p-3 flex flex-col justify-center items-center">
+                        <span class="text-lg md:text-2xl font-black text-emerald-600">12+</span>
+                        <span class="text-[7px] md:text-[9px] font-black text-slate-500 tracking-wider uppercase text-center mt-1 leading-tight">
+                            ANOS DE EXPERIÊNCIA
+                        </span>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100/80 rounded-2xl p-3 flex flex-col justify-center items-center">
+                        <span class="text-lg md:text-2xl font-black text-emerald-600">2.750+</span>
+                        <span class="text-[7px] md:text-[9px] font-black text-slate-500 tracking-wider uppercase text-center mt-1 leading-tight">
+                            PROFESSORES FORMADOS
+                        </span>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100/80 rounded-2xl p-3 flex flex-col justify-center items-center">
+                        <span class="text-xs md:text-base font-black text-emerald-600 leading-none py-1">Inglês</span>
+                        <span class="text-[10px] md:text-xs font-black text-emerald-600 leading-none">Comunicativo</span>
+                        <span class="text-[7px] md:text-[9px] font-black text-slate-500 tracking-wider uppercase text-center mt-1 leading-tight">
+                            ESPECIALISTA CERTIFICADO
+                        </span>
+                    </div>
+                </div>
+
+                <p class="text-slate-600 italic text-sm md:text-base leading-relaxed font-medium">
+                    "Dediquei minha carreira a tornar o ensino de Inglês mais acessível e divertido. Essas dinâmicas são o resultado de anos de pesquisa e prática em sala de aula."
+                </p>
+
+                <div class="flex justify-center pt-2">
+                    <div class="relative">
+                        <div class="w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-4 border-blue-500 shadow-md">
+                            <img 
+                                src="/author_photo.png" 
+                                alt="Rosana Sousa" 
+                                class="w-full h-full object-cover"
+                                referrerpolicy="no-referrer"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 px-4 md:px-6 bg-slate-50/30">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-display font-black text-blue-600 text-center mb-10">
+                Perguntas Frequentes
+            </h2>
+            <div class="space-y-3.5 text-left">
+                <template x-for="(faq, i) in faqs" :key="i">
+                    <div class="bg-white rounded-xl md:rounded-2xl border border-slate-200/60 overflow-hidden shadow-sm transition-all duration-300">
+                        <button 
+                            @click="openFaq === i ? openFaq = null : openFaq = i"
+                            class="w-full p-4 md:p-5 text-left flex justify-between items-center font-bold text-sm md:text-base text-slate-800 gap-3"
+                        >
+                            <div class="flex items-center gap-3">
+                                <template x-if="faq.icon === 'shield'">
+                                    <i data-lucide="shield-check" class="w-4 h-4 md:w-5 md:h-5 text-emerald-500 flex-shrink-0"></i>
+                                </template>
+                                <template x-if="faq.icon !== 'shield'">
+                                    <i data-lucide="check" class="w-4 h-4 md:w-5 md:h-5 text-emerald-500 flex-shrink-0"></i>
+                                </template>
+                                <span class="font-extrabold text-slate-700 leading-snug" x-text="faq.q"></span>
+                            </div>
+                            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform flex-shrink-0" :class="openFaq === i ? 'rotate-180' : ''"></i>
+                        </button>
+                        <div 
+                            x-show="openFaq === i" 
+                            x-collapse
+                            class="p-4 md:p-5 pt-0 text-slate-600 text-xs md:text-sm border-t border-slate-100/80 bg-slate-50/40"
+                        >
+                            <span x-text="faq.a"></span>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-20 text-center bg-blue-600 relative overflow-hidden px-4 md:px-6">
+        <div class="max-w-3xl mx-auto space-y-6">
+            <h2 class="text-3xl md:text-5xl font-display font-black italic tracking-widest text-white uppercase leading-tight md:leading-snug">
+                TEACHER TRANSFORME SUAS AULAS<br>HOJE MESMO!
+            </h2>
+            <p class="text-sm md:text-base text-white/90 max-w-xl mx-auto leading-relaxed">
+                Pare de perder tempo. Comece hoje a usar dinâmicas e atividades prontas que realmente funcionam em sala.
+            </p>
+            <div class="pt-4 space-y-5">
+                <button @click="document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' })" class="flex items-center justify-center gap-2.5 mx-auto px-6 md:px-8 py-3.5 md:py-4 bg-[#1da154] hover:bg-[#1a904b] text-white font-extrabold text-xs md:text-sm rounded-full shadow-lg shadow-black/10 hover:scale-105 active:scale-95 transition-all tracking-wider uppercase font-sans">
+                    <i data-lucide="book-open" class="w-4 h-4 md:w-5 md:h-5"></i>
+                    <span>Quero Economizar Tempo Agora</span>
+                </button>
+                <div class="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-[10px] md:text-xs text-white/90 font-bold uppercase tracking-wider">
+                    <span class="flex items-center gap-1.5">
+                        <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400 stroke-[3]"></i> Acesso imediato
+                    </span>
+                    <span class="flex items-center gap-1.5">
+                        <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400 stroke-[3]"></i> Garantia de 7 dias
+                    </span>
+                    <span class="flex items-center gap-1.5">
+                        <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400 stroke-[3]"></i> Sem mensalidade
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-slate-100 text-center text-slate-400 text-sm">
+        <p>© <span x-text="new Date().getFullYear()"></span> English For Teachers. Todos os direitos reservados.</p>
+        <p class="mt-2">Desenvolvido com foco na rotina do professor.</p>
+    </footer>
+
+    <!-- Floating Notifications -->
+    <div 
+        x-show="showNotification"
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0 translate-x-10"
+        x-transition:enter-end="opacity-100 translate-x-0"
+        x-transition:leave="transition ease-in duration-300"
+        x-transition:leave-start="opacity-100 translate-x-0"
+        x-transition:leave-end="opacity-0 translate-x-10"
+        class="fixed top-4 right-4 md:right-6 z-[100] bg-white p-3 sm:p-4 rounded-xl flex items-center gap-3 sm:gap-4 shadow-[0_10px_30px_rgba(0,0,0,0.1)] border border-slate-100/50 min-w-[240px] max-w-[280px] sm:min-w-[280px] sm:max-w-[320px]"
+        x-cloak
+    >
+        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-50 rounded-full flex items-center justify-center flex-shrink-0">
+            <div class="w-7 h-7 sm:w-8 sm:h-8 bg-white border-2 border-brand-blue rounded-full flex items-center justify-center">
+                <i data-lucide="check" class="text-brand-blue w-4 h-4 sm:w-5 sm:h-5 stroke-[3]"></i>
+            </div>
+        </div>
+        <div class="text-[12px] sm:text-[13px] leading-snug">
+            <p class="font-extrabold text-slate-800" x-text="notifications[currentNotif].name"></p>
+            <p class="text-slate-500 font-medium" x-text="notifications[currentNotif].action"></p>
+            <p class="text-brand-blue font-black mt-1 text-[10px] tracking-wider" x-text="notifications[currentNotif].time"></p>
+        </div>
+    </div>
+
+    <!-- Sticky Bottom CTA -->
+    <a 
+        href="#pricing"
+        x-show="showStickyButton"
+        x-transition:enter="transition cubic-bezier(0.34, 1.56, 0.64, 1) duration-600"
+        x-transition:enter-start="opacity-0 translate-y-20 scale-50"
+        x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+        x-transition:leave="transition ease-in duration-300"
+        x-transition:leave-start="opacity-100 scale-100"
+        x-transition:leave-end="opacity-0 scale-50 translate-y-10"
+        class="fixed bottom-6 right-4 md:right-6 z-[90] bg-[#22c55e] text-white px-6 py-4 rounded-full shadow-[0_10px_25px_rgba(34,197,94,0.4)] flex items-center gap-3 font-bold text-lg hover:scale-105 active:scale-95 transition-all animate-pulse-soft no-underline"
+        x-cloak
+    >
+        <i data-lucide="shopping-cart" class="w-6 h-6"></i>
+        <span>Garantir Acesso</span>
+    </a>
+
+    <!-- Discount / Upsell Modal -->
+    <div 
+        x-show="showDiscountModal"
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+        x-cloak
+    >
+        <div 
+            @click.away="showDiscountModal = false"
+            x-transition:enter="transition ease-out duration-300 transform"
+            x-transition:enter-start="scale-95 translate-y-4"
+            x-transition:enter-end="scale-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-200 transform"
+            x-transition:leave-start="scale-100 translate-y-0"
+            x-transition:leave-end="scale-95 translate-y-4"
+            class="bg-white rounded-[2rem] shadow-2xl overflow-hidden w-full max-w-[480px] border border-slate-100 text-left"
+        >
+            <!-- Blue Header -->
+            <div class="bg-blue-600 text-white p-6 md:p-8 text-center relative flex flex-col items-center gap-3">
+                <button 
+                    @click="showDiscountModal = false"
+                    class="absolute top-4 right-4 text-white hover:text-white/85 transition-colors p-1 rounded-full hover:bg-white/10 border-0 bg-transparent cursor-pointer"
+                    title="Fechar"
+                >
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+                <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center border border-white/10 shadow-inner">
+                    <i data-lucide="gift" class="w-6 h-6 text-white"></i>
+                </div>
+                <h3 class="text-lg md:text-xl font-black tracking-wide leading-tight mt-1 text-center font-display">
+                    🎁 ESPERE! Vai deixar esses bônus incríveis?
+                </h3>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 md:p-8 space-y-6">
+                <!-- Warning Text -->
+                <p class="text-center text-xs md:text-sm font-bold text-slate-500 uppercase tracking-wider">
+                    O Pacote Básico <span class="text-red-500 font-extrabold">NÃO INCLUI</span>:
+                </p>
+
+                <!-- List are in red box -->
+                <div class="border border-red-100 bg-red-50/10 rounded-2xl p-4 md:p-5 space-y-3">
+                    <div class="flex gap-3 items-center text-slate-500/80 font-semibold text-xs md:text-sm">
+                        <i data-lucide="x" class="w-4 h-4 text-red-500 flex-shrink-0 stroke-[2.5]"></i>
+                        <span>250+ Flashcards de Vocabulário</span>
+                    </div>
+                    <div class="flex gap-3 items-center text-slate-500/80 font-semibold text-xs md:text-sm">
+                        <i data-lucide="x" class="w-4 h-4 text-red-500 flex-shrink-0 stroke-[2.5]"></i>
+                        <span>Kit Inglês Interativo</span>
+                    </div>
+                    <div class="flex gap-3 items-center text-slate-500/80 font-semibold text-xs md:text-sm">
+                        <i data-lucide="x" class="w-4 h-4 text-red-500 flex-shrink-0 stroke-[2.5]"></i>
+                        <span>Guia de Planejamento</span>
+                    </div>
+                    <div class="flex gap-3 items-center text-slate-500/80 font-semibold text-xs md:text-sm">
+                        <i data-lucide="x" class="w-4 h-4 text-red-500 flex-shrink-0 stroke-[2.5]"></i>
+                        <span>Kit de Aulas de Emergência</span>
+                    </div>
+                    <div class="flex gap-3 items-center text-slate-500/80 font-semibold text-xs md:text-sm">
+                        <i data-lucide="x" class="w-4 h-4 text-red-500 flex-shrink-0 stroke-[2.5]"></i>
+                        <span>Atualizações Semanais</span>
+                    </div>
+                    <div class="flex gap-3 items-center text-slate-500/80 font-semibold text-xs md:text-sm">
+                        <i data-lucide="x" class="w-4 h-4 text-red-500 flex-shrink-0 stroke-[2.5]"></i>
+                        <span>Slides Prontos para Aula</span>
+                    </div>
+                </div>
+
+                <!-- Green Banner Box -->
+                <div class="bg-emerald-50/60 border border-emerald-100 rounded-2xl p-4 text-center space-y-1">
+                    <p class="text-[11px] md:text-xs font-bold text-slate-600">
+                        Por apenas <span class="text-emerald-600 font-black">+ R$ 7,90</span>, destrave o
+                    </p>
+                    <h4 class="text-lg md:text-xl font-black text-emerald-600 tracking-wider uppercase font-display">
+                        PACOTE COMPLETO
+                    </h4>
+                    <p class="text-[10px] font-medium text-slate-400">
+                        com todos os Bônus (valem R$ 67)
+                    </p>
+                </div>
+
+                <!-- CTA Actions -->
+                <div class="space-y-3">
+                    <button 
+                        @click="showDiscountModal = false; window.location.href = 'https://pay.wiapy.com/SDF8ESqHNh'" 
+                        class="w-full flex items-center justify-center text-center bg-[#1da154] hover:bg-[#1a904b] text-white font-black text-xs md:text-[13px] py-4 px-4 rounded-xl shadow-lg hover:scale-[1.01] transition-all tracking-wider uppercase font-sans ring-2 ring-emerald-500/30 line-height-1.2 cursor-pointer"
+                    >
+                        SIM! Quero o Pacote Completo Com Desconto<br class="hidden xs:block" /> (R$17,90)
+                    </button>
+                    <button 
+                        @click="showDiscountModal = false; window.location.href = 'https://pay.wiapy.com/tC9uZRmjGt'" 
+                        class="w-full bg-white hover:bg-slate-50 text-slate-500 border border-slate-200 py-3 rounded-xl font-bold text-[11px] md:text-xs transition-all text-center cursor-pointer"
+                    >
+                        Continuar apenas com o pacote básico
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        function pageData() {
+            return {
+                todayDate: '',
+                openFaq: null,
+                showNotification: false,
+                                currentNotif: 0,
+                showStickyButton: false,
+                showDiscountModal: false,
+                notifications: [
+                    { name: "Mariana Ferreira", action: "adquiriu o Pacote Completo", time: "HÁ 3 MINUTOS" },
+                    { name: "Teacher Ana Paula", action: "garantiu acesso imediato", time: "AGORA MESMO" },
+                    { name: "Juliana Costa", action: "acabou de entrar para o pacote premium", time: "HÁ 5 MINUTOS" },
+                    { name: "Fernanda Lima", action: "adquiriu o material completo", time: "HÁ 2 HORAS" },
+                    { name: "Professora Camila", action: "acabou de garantir acesso", time: "AGORA" },
+                ],
+                showcaseList: [
+                    "Slides 100% editáveis no Powerpoint/Canva",
+                    "PDFs prontos para imprimir (P&B e Colorido)",
+                    "Dinâmicas de grupo e speaking cards",
+                    "Planejamentos alinhados à BNCC",
+                    "Mapas mentais ilustrados",
+                ],
+                materialCards: [
+                    { 
+                        title: "250+ Flashcards Prontos", 
+                        desc: "Centenas de Flashcards prontos e separados por temas para praticar vocabulário de forma divertida.", 
+                        icon: "image" 
+                    },
+                    { 
+                        title: "Kit Inglês Interativo", 
+                        desc: "Pacote de materiais visuais e jogos lúdicos, prontos para imprimir, montar e aplicar nas suas aulas.", 
+                        icon: "package" 
+                    },
+                    { 
+                        title: "Slides Dinâmicos", 
+                        desc: "Apresentações prontas para deixar suas aulas muito mais visuais e profissionais.", 
+                        icon: "layout" 
+                    },
+                    { 
+                        title: "Atividades Prontas", 
+                        desc: "Exercícios e dinâmicas de grupo selecionadas para engajamento total.", 
+                        icon: "message-square" 
+                    },
+                ],
+                systemChecks: [
+                    "acesso vitalício",
+                    "acesso imediato",
+                    "materiais organizados",
+                    "pronto para imprimir",
+                    "acesso pelo celular"
+                ],
+                testimonialImages: [
+                    "/prova-social-01.png",
+                    "/prova-social-02.png",
+                    "/prova-social-03.png",
+                    "/prova-social-04.png",
+                    "/prova-social-05.png",
+                ],
+                textTestimonials: [
+                    {
+                        name: "Leticia",
+                        role: "Teacher Kids",
+                        msg: "Gente, os slides de cores salvaram minha aula hoje! Os alunos ficaram hipnotizados com o layout. Recuperei meus domingos com certeza.",
+                        type: "whatsapp",
+                        time: "14:20"
+                    },
+                    {
+                        name: "Marcos",
+                        role: "Fundamental II",
+                        msg: "Melhor investimento que fiz. O guia de planejamento é perfeito, economizei pelo menos 4h de trabalho essa semana.",
+                        type: "dm",
+                        time: "Ontem"
+                    }
+                ],
+                completePlanFeatures: [
+                    "500+ atividades",
+                    "Slides 100% editáveis",
+                    "Mapas mentais exclusivos",
+                    "Guia de Planejamento",
+                    "Bônus exclusivos",
+                    "Acesso vitalício",
+                    "Atualizações gratuitas",
+                ],
+                authorPoints: [
+                    "materiais usados em sala",
+                    "foco no ensino fundamental",
+                    "aulas mais dinâmicas",
+                    "organização pedagógica"
+                ],
+                faqs: [
+                    { q: "O acesso chega na hora?", a: "Imediatamente após a confirmação do pagamento, você recebe um e-mail com o link de acesso ao Drive.", icon: "check" },
+                    { q: "Serve para quais níveis e idades?", a: "Sim, o material é focado especificamente do 1º ao 9º ano do Ensino Fundamental, atendendo a diversos níveis.", icon: "check" },
+                    { q: "É pagamento único ou mensalidade?", a: "É pagamento único! Você paga uma vez e tem acesso vitalício ao material, sem cobranças mensais.", icon: "shield" },
+                    { q: "Qual a diferença entre o Pacote Básico e o Completo?", a: "O Pacote Básico inclui mais de 400 dinâmicas e 200 atividades interativas. O Completo acompanha bônus extras exclusivos (Slides, Mapas Mentais, Planejamento BNCC e Speaking Activities) e atualizações semanais.", icon: "check" },
+                    { q: "E se eu não gostar do material?", a: "Você tem uma garantia incondicional de 7 dias. Se não gostar, basta nos enviar uma mensagem que devolvemos 100% do seu investimento.", icon: "shield" },
+                    { q: "Funciona para aulas Online e Presenciais?", a: "Perfeitamente! As atividades podem ser adaptadas de forma simples tanto para o ensino online (Slides editáveis) quanto para o presencial (PDFs prontos para imprimir).", icon: "check" },
+                ],
+                init() {
+                    console.log('DEBUG IMAGES:');
+                    ['/prova-social-01.png', '/prova-social-02.png', '/prova-social-03.png', '/prova-social-04.png', '/prova-social-05.png'].forEach(img => {
+                        const i = new Image();
+                        i.onload = () => console.log('✅ OK:', img);
+                        i.onerror = () => console.error('❌ ERRO:', img);
+                        i.src = img;
+                    });
+
+                    const today = new Date();
+                    const options = { day: 'numeric', month: 'long' };
+                    this.todayDate = today.toLocaleDateString('pt-BR', options);
+                    
+                    // Lucide Icons
+                    lucide.createIcons();
+                    
+                    // Reveal animations
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('active');
+                                // Trigger icon creation for new elements if any
+                            }
+                        });
+                    }, { threshold: 0.1 });
+                    
+                    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+                    // Scroll listener for sticky button
+                    window.addEventListener('scroll', () => {
+                        const pricingSection = document.getElementById('pricing');
+                        if (pricingSection) {
+                            const rect = pricingSection.getBoundingClientRect();
+                            this.showStickyButton = window.scrollY > 800 && rect.top > window.innerHeight;
+                        } else {
+                            this.showStickyButton = window.scrollY > 800;
+                        }
+                    });
+                    
+                    // Notifications cycle
+                    setInterval(() => {
+                        this.showNotification = true;
+                        setTimeout(() => {
+                            this.showNotification = false;
+                            setTimeout(() => {
+                                this.currentNotif = (this.currentNotif + 1) % this.notifications.length;
+                            }, 400);
+                        }, 5000); // Show for 5 seconds
+                    }, 25000); // Cycle every 25 seconds (requested)
+                    
+                    // Show first notification after 3 seconds
+                    setTimeout(() => {
+                        this.showNotification = true;
+                        setTimeout(() => { this.showNotification = false; }, 5000);
+                    }, 3000);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
+
