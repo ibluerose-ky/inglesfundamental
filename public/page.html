@@ -279,6 +279,75 @@
         </div>
     </section>
 
+    <!-- Materials Showcase Carousel Section -->
+    <section class="py-16 md:py-24 px-4 bg-gradient-to-b from-white to-blue-50/40 overflow-hidden">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-10 md:mb-14">
+                <span class="inline-block px-4 py-1.5 bg-brand-blue/10 text-brand-blue text-[11px] md:text-xs font-black tracking-widest uppercase rounded-full mb-4">Materiais Reais do Produto</span>
+                <h2 class="text-2xl md:text-4xl lg:text-5xl font-display font-black text-brand-blue leading-[1.1] reveal active">
+                    Veja exemplos dos materiais <br class="hidden md:block">
+                    organizados por categoria
+                </h2>
+                <p class="text-slate-500 text-sm md:text-base mt-4 max-w-2xl mx-auto">
+                    Uma amostra real do que você vai encontrar dentro do produto — atividades prontas, dinâmicas, caça-palavras e muito mais.
+                </p>
+            </div>
+
+            <div x-data="{
+                slides: [
+                    { src: '/material-01.png?v=1', cat: 'Atividades de Vocabulário' },
+                    { src: '/material-07.png?v=1', cat: 'Vocabulário Visual' },
+                    { src: '/material-04.png?v=1', cat: 'Escrita de Vocabulário' },
+                    { src: '/material-03.png?v=1', cat: 'Dinâmicas de Cumprimentos' },
+                    { src: '/material-02.png?v=1', cat: 'Caça-Palavras' },
+                    { src: '/material-06.png?v=1', cat: 'Atividades de Vocabulário' },
+                    { src: '/material-05.png?v=1', cat: 'Escrita de Vocabulário' },
+                    { src: '/material-08.png?v=1', cat: 'Vocabulário Visual' },
+                ],
+                current: 0,
+                next() { this.current = (this.current + 1) % this.slides.length; this.scrollTo(); },
+                prev() { this.current = (this.current - 1 + this.slides.length) % this.slides.length; this.scrollTo(); },
+                go(i) { this.current = i; this.scrollTo(); },
+                scrollTo() {
+                    const el = this.$refs.track.children[this.current];
+                    if (el) el.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                }
+            }" class="relative reveal active">
+                <!-- Track -->
+                <div x-ref="track" class="flex gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar carousel-mask pb-6 px-2 md:px-8 scroll-smooth">
+                    <template x-for="(slide, i) in slides" :key="i">
+                        <div class="snap-center shrink-0 w-[260px] sm:w-[300px] md:w-[340px]">
+                            <div class="bg-white rounded-2xl overflow-hidden shadow-xl shadow-blue-500/10 border border-slate-100 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300 hover:-translate-y-1">
+                                <div class="aspect-[3/4] bg-slate-50 overflow-hidden">
+                                    <img :src="slide.src" :alt="slide.cat" loading="lazy" class="w-full h-full object-contain">
+                                </div>
+                                <div class="px-4 py-3 border-t border-slate-100 bg-white">
+                                    <p class="text-[11px] font-bold tracking-widest text-brand-blue/70 uppercase mb-1">Categoria</p>
+                                    <p class="text-sm md:text-base font-black text-slate-800" x-text="slide.cat"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+
+                <!-- Controls -->
+                <div class="flex items-center justify-center gap-4 mt-6">
+                    <button @click="prev()" class="w-11 h-11 rounded-full bg-white border border-slate-200 text-brand-blue shadow-md hover:bg-brand-blue hover:text-white transition-all flex items-center justify-center" aria-label="Anterior">
+                        <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                    </button>
+                    <div class="flex items-center gap-2">
+                        <template x-for="(slide, i) in slides" :key="i">
+                            <button @click="go(i)" :class="current === i ? 'bg-brand-blue w-6' : 'bg-slate-300 w-2'" class="h-2 rounded-full transition-all"></button>
+                        </template>
+                    </div>
+                    <button @click="next()" class="w-11 h-11 rounded-full bg-white border border-slate-200 text-brand-blue shadow-md hover:bg-brand-blue hover:text-white transition-all flex items-center justify-center" aria-label="Próximo">
+                        <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Emotional Pain Section (White & Blue Theme) -->
     <section class="py-16 md:py-32 px-4 bg-white overflow-hidden relative">
         <div class="max-w-5xl mx-auto">
