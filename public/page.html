@@ -1017,6 +1017,56 @@
     </section>
 
 
+    <!-- Bônus Section -->
+    <section id="bonus" class="py-16 md:py-20 px-4 md:px-6 bg-[#0a2c6b]">
+        <div class="max-w-2xl mx-auto">
+            <div class="text-center mb-10 md:mb-14">
+                <p class="text-blue-300 font-black text-xs md:text-sm uppercase tracking-[0.2em] mb-3">🎁 Bônus Exclusivos</p>
+                <h2 class="text-3xl md:text-5xl font-display font-black text-white leading-tight">
+                    Você ainda leva <span class="text-yellow-300">10 bônus</span> de presente
+                </h2>
+                <p class="text-blue-100/80 text-sm md:text-base mt-4 font-medium">
+                    Confira tudo que está incluso GRÁTIS no Pacote Premium:
+                </p>
+            </div>
+
+            <template x-for="(bonus, i) in bonusList" :key="i">
+                <div class="bg-white rounded-3xl shadow-xl mb-6 overflow-hidden">
+                    <div class="p-6 flex flex-col items-center text-center">
+                        <template x-if="bonus.img">
+                            <img :src="bonus.img" :alt="'Bônus ' + bonus.n + ' ' + bonus.title" class="w-full max-w-xs h-auto object-contain mb-4" loading="lazy" />
+                        </template>
+                        <template x-if="!bonus.img">
+                            <div class="w-full max-w-xs aspect-square mb-4 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-200 flex flex-col items-center justify-center p-6">
+                                <div class="bg-blue-600 text-white text-xs font-black px-4 py-1.5 rounded-full mb-3 tracking-wider">BÔNUS <span x-text="bonus.n"></span></div>
+                                <i :data-lucide="bonus.icon" class="w-16 h-16 text-blue-600 mb-3"></i>
+                                <p class="text-blue-900 font-black text-lg leading-tight" x-text="bonus.title"></p>
+                            </div>
+                        </template>
+                        <p class="text-slate-700 text-sm md:text-base font-medium mb-4 max-w-sm" x-text="bonus.desc"></p>
+                        <div class="inline-block bg-blue-50 border border-blue-100 px-5 py-2 rounded-full">
+                            <span class="text-blue-700 font-black text-sm">Valor individual: R$<span x-text="bonus.price"></span></span>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Total Card -->
+            <div class="bg-[#0a2c6b] border-2 border-blue-400/40 rounded-3xl p-8 text-center mt-8 shadow-2xl">
+                <p class="text-blue-200 font-black text-[11px] md:text-xs uppercase tracking-[0.25em] mb-3">Valor total dos bônus</p>
+                <p class="text-white text-5xl md:text-6xl font-display font-black tracking-tight mb-4">R$162,44</p>
+                <p class="text-white text-lg md:text-xl font-bold leading-snug">
+                    Inclusos <span class="inline-block bg-emerald-500 text-white font-black text-sm md:text-base px-3 py-1 rounded-md align-middle mx-1">GRÁTIS</span><br/>
+                    no Pacote Premium!
+                </p>
+            </div>
+
+            <p class="text-center text-white font-black text-base md:text-lg mt-10 underline underline-offset-4 decoration-blue-300/50">
+                Agora escolha a melhor forma de garantir o seu acesso
+            </p>
+        </div>
+    </section>
+
     <!-- Pricing Section -->
     <section id="pricing" class="py-8 md:py-16 px-4 md:px-6">
         <div class="max-w-6xl mx-auto">
@@ -1566,6 +1616,18 @@
                     "Dinâmicas de grupo e speaking cards",
                     "Planejamentos alinhados à BNCC",
                     "Mapas mentais ilustrados",
+                ],
+                bonusList: [
+                    { n: 1, title: "Slides Prontos para Aula", desc: "Slides editáveis e prontos para aplicar em sala, é só adaptar e usar.", price: "16,90", img: "/bonus-1-slides.png", icon: "presentation" },
+                    { n: 2, title: "Mapas Mentais de Inglês", desc: "Mapas mentais dinâmicos para ensinar vocabulário, gramática e expressões.", price: "12,00", img: "/bonus-2-mapas.png", icon: "brain" },
+                    { n: 3, title: "Guia de Planejamento Escolar", desc: "Estrutura pronta de planejamento de aula de inglês do 1º ao 9º ano.", price: "9,47", img: "/bonus-3-guia.png", icon: "book-open" },
+                    { n: 4, title: "Atividades de Speaking", desc: "Atividades de conversação para desenvolver fluência, pronúncia e confiança ao falar.", price: "10,00", img: "/bonus-4-speaking.png", icon: "mic" },
+                    { n: 5, title: "Atividades Interativas de Inglês do 1º ao 9º ano", desc: "Jogos, desafios e exercícios interativos adaptados para todas as séries.", price: "27,00", img: "/bonus-5-interativas.png", icon: "gamepad-2" },
+                    { n: 6, title: "Acesso Vitalício", desc: "Seu acesso garantido para sempre, sem mensalidades e sem limite de tempo.", price: "29,90", img: "/bonus-6-vitalicio.png", icon: "infinity" },
+                    { n: 7, title: "Atualizações Futuras", desc: "Receba novos conteúdos, melhorias e recursos sempre que forem lançados.", price: "17,90", img: "/bonus-7-atualizacoes.png", icon: "refresh-cw" },
+                    { n: 8, title: "Atividades de Vocabulário", desc: "Exercícios práticos e divertidos para expandir o vocabulário de forma eficaz.", price: "12,47", img: "/bonus-8-vocabulario.png", icon: "book" },
+                    { n: 9, title: "Escrita de Vocabulário com Animais", desc: "Atividades de escrita com temática de animais para fixar vocabulário de forma lúdica.", price: "9,90", img: null, icon: "pencil" },
+                    { n: 10, title: "Dinâmicas de Cumprimentos", desc: "Dinâmicas prontas para ensinar greetings e quebrar o gelo em sala de aula.", price: "16,90", img: null, icon: "hand" },
                 ],
                 materialCards: [
                     { 
