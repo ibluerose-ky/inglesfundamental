@@ -546,10 +546,10 @@
                              x-transition:enter="transition duration-500 ease-out"
                              x-transition:enter-start="opacity-0 scale-95"
                              x-transition:enter-end="opacity-100 scale-100"
-                             class="absolute inset-0 flex items-center justify-center bg-white">
+                             class="absolute inset-0">
                             <img :src="slide" 
                                  :alt="'Depoimento ' + (index + 1)" 
-                                 class="w-full h-full object-contain"
+                                 class="w-full h-full object-cover object-center"
                                  referrerpolicy="no-referrer">
                         </div>
                     </template>
