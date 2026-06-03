@@ -72,14 +72,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "Inglês Fundamental" },
+      { name: "description", content: "Exact Page Clone replicates web pages precisely, allowing users to clone and customize content." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Inglês Fundamental" },
+      { property: "og:description", content: "Exact Page Clone replicates web pages precisely, allowing users to clone and customize content." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Inglês Fundamental" },
+      { name: "twitter:description", content: "Exact Page Clone replicates web pages precisely, allowing users to clone and customize content." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ff048b69-ce21-4e5a-beaf-b529cfc83202/id-preview-48e0f68d--acea3072-0d61-4e24-9052-c4caff4a9c4e.lovable.app-1780517584971.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ff048b69-ce21-4e5a-beaf-b529cfc83202/id-preview-48e0f68d--acea3072-0d61-4e24-9052-c4caff4a9c4e.lovable.app-1780517584971.png" },
     ],
     links: [
       {
