@@ -1131,8 +1131,9 @@
 
                 <!-- CTA Actions -->
                 <div class="space-y-3">
-                    <button 
-                        @click="showDiscountModal = false; window.location.href = 'https://pay.wiapy.com/SDF8ESqHNh'" 
+                    <a 
+                        href="https://pay.wiapy.com/SDF8ESqHNh" target="_blank" rel="noopener noreferrer"
+                        @click="showDiscountModal = false"
                         class="w-full flex items-center justify-center text-center bg-[#1da154] hover:bg-[#1a904b] text-white font-black text-xs md:text-[13px] py-4 px-4 rounded-xl shadow-lg hover:scale-[1.01] transition-all tracking-wider uppercase font-sans ring-2 ring-emerald-500/30 line-height-1.2 cursor-pointer"
                     >
                         SIM! Quero o Pacote Completo Com Desconto<br class="hidden xs:block" /> (R$17,90)
