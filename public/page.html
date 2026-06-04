@@ -1138,12 +1138,13 @@
                     >
                         SIM! Quero o Pacote Completo Com Desconto<br class="hidden xs:block" /> (R$17,90)
                     </button>
-                    <button 
-                        @click="showDiscountModal = false; window.location.href = 'https://pay.wiapy.com/tC9uZRmjGt'" 
-                        class="w-full bg-white hover:bg-slate-50 text-slate-500 border border-slate-200 py-3 rounded-xl font-bold text-[11px] md:text-xs transition-all text-center cursor-pointer"
+                    <a 
+                        href="https://pay.wiapy.com/tC9uZRmjGt" target="_blank" rel="noopener noreferrer"
+                        @click="showDiscountModal = false"
+                        class="w-full block text-center bg-white hover:bg-slate-50 text-slate-500 border border-slate-200 py-3 rounded-xl font-bold text-[11px] md:text-xs transition-all cursor-pointer"
                     >
                         Continuar apenas com o pacote básico
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
