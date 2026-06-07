@@ -1320,6 +1320,29 @@
             }
         }
     </script>
+    <!-- Meta Pixel: InitiateCheckout em todos os cliques de checkout -->
+    <script>
+      (function () {
+        function fireInitiateCheckout() {
+          try {
+            var fbq = (window.parent && window.parent.fbq) || window.fbq;
+            if (typeof fbq === 'function') {
+              fbq('track', 'InitiateCheckout');
+            }
+          } catch (e) { /* no-op */ }
+        }
+        document.addEventListener('click', function (ev) {
+          var el = ev.target;
+          while (el && el !== document.body) {
+            if (el.tagName === 'A' && el.href && el.href.indexOf('pay.wiapy.com') !== -1) {
+              fireInitiateCheckout();
+              return;
+            }
+            el = el.parentElement;
+          }
+        }, true);
+      })();
+    </script>
 </body>
 </html>
 
