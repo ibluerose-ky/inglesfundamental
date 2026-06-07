@@ -1323,6 +1323,8 @@
     <!-- Meta Pixel: InitiateCheckout em todos os cliques de checkout -->
     <script>
       (function () {
+        var lastCheckoutFireAt = 0;
+
         function getMetaPixel() {
           if (typeof window.fbq === 'function') return window.fbq;
           return null;
@@ -1337,6 +1339,10 @@
         }
 
         function fireInitiateCheckout() {
+          var now = Date.now();
+          if (now - lastCheckoutFireAt < 1000) return;
+          lastCheckoutFireAt = now;
+
           if (window.parent && window.parent !== window) {
             notifyParentPixel();
             return;
@@ -1374,9 +1380,12 @@
           return null;
         }
 
-        document.addEventListener('click', function (ev) {
+        function handleCheckoutInteraction(ev) {
           if (findCheckoutTrigger(ev.target)) fireInitiateCheckout();
-        }, true);
+        }
+
+        document.addEventListener('pointerdown', handleCheckoutInteraction, true);
+        document.addEventListener('click', handleCheckoutInteraction, true);
       })();
     </script>
 </body>
