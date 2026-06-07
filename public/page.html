@@ -1325,19 +1325,6 @@
       (function () {
         function getMetaPixel() {
           if (typeof window.fbq === 'function') return window.fbq;
-
-          try {
-            if (window.parent && window.parent !== window && typeof window.parent.fbq === 'function') {
-              return window.parent.fbq;
-            }
-          } catch (e) { /* no-op */ }
-
-          try {
-            if (window.top && window.top !== window && typeof window.top.fbq === 'function') {
-              return window.top.fbq;
-            }
-          } catch (e) { /* no-op */ }
-
           return null;
         }
 
@@ -1350,13 +1337,15 @@
         }
 
         function fireInitiateCheckout() {
-          var fbq = getMetaPixel();
-          if (fbq) {
-            fbq('track', 'InitiateCheckout');
+          if (window.parent && window.parent !== window) {
+            notifyParentPixel();
             return;
           }
 
-          notifyParentPixel();
+          var fbq = getMetaPixel();
+          if (fbq) {
+            fbq('track', 'InitiateCheckout');
+          }
         }
 
         function findCheckoutTrigger(target) {
