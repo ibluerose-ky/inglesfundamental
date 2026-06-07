@@ -1137,7 +1137,7 @@
                         class="w-full flex items-center justify-center text-center bg-[#1da154] hover:bg-[#1a904b] text-white font-black text-xs md:text-[13px] py-4 px-4 rounded-xl shadow-lg hover:scale-[1.01] transition-all tracking-wider uppercase font-sans ring-2 ring-emerald-500/30 line-height-1.2 cursor-pointer"
                     >
                         SIM! Quero o Pacote Completo Com Desconto<br class="hidden xs:block" /> (R$17,90)
-                    </button>
+                    </a>
                     <a 
                         href="https://pay.wiapy.com/tC9uZRmjGt" target="_blank" rel="noopener noreferrer"
                         @click="showDiscountModal = false"
@@ -1323,24 +1323,69 @@
     <!-- Meta Pixel: InitiateCheckout em todos os cliques de checkout -->
     <script>
       (function () {
-        function fireInitiateCheckout() {
+        var lastCheckoutFireAt = 0;
+
+        function getMetaPixel() {
+          if (typeof window.fbq === 'function') return window.fbq;
+          return null;
+        }
+
+        function notifyParentPixel() {
           try {
-            var fbq = (window.parent && window.parent.fbq) || window.fbq;
-            if (typeof fbq === 'function') {
-              fbq('track', 'InitiateCheckout');
+            if (window.parent && window.parent !== window) {
+              window.parent.postMessage({ source: 'wiapy-checkout', eventName: 'InitiateCheckout' }, window.location.origin);
             }
           } catch (e) { /* no-op */ }
         }
-        document.addEventListener('click', function (ev) {
-          var el = ev.target;
+
+        function fireInitiateCheckout() {
+          var now = Date.now();
+          if (now - lastCheckoutFireAt < 1000) return;
+          lastCheckoutFireAt = now;
+
+          if (window.parent && window.parent !== window) {
+            notifyParentPixel();
+            return;
+          }
+
+          var fbq = getMetaPixel();
+          if (fbq) {
+            fbq('track', 'InitiateCheckout');
+          }
+        }
+
+        function findCheckoutTrigger(target) {
+          var el = target;
+
           while (el && el !== document.body) {
-            if (el.tagName === 'A' && el.href && el.href.indexOf('pay.wiapy.com') !== -1) {
-              fireInitiateCheckout();
-              return;
+            if (el.tagName === 'A' && el.href && el.href.indexOf('pay.wiapy.com') !== -1) return el;
+
+            if (el.tagName === 'BUTTON') {
+              var onclick = el.getAttribute('onclick') || '';
+              var alpineClick = el.getAttribute('@click') || el.getAttribute('x-on:click') || '';
+              var checkoutUrl = el.getAttribute('data-checkout-url') || el.getAttribute('data-href') || '';
+
+              if (
+                onclick.indexOf('pay.wiapy.com') !== -1 ||
+                alpineClick.indexOf('pay.wiapy.com') !== -1 ||
+                checkoutUrl.indexOf('pay.wiapy.com') !== -1
+              ) {
+                return el;
+              }
             }
+
             el = el.parentElement;
           }
-        }, true);
+
+          return null;
+        }
+
+        function handleCheckoutInteraction(ev) {
+          if (findCheckoutTrigger(ev.target)) fireInitiateCheckout();
+        }
+
+        document.addEventListener('pointerdown', handleCheckoutInteraction, true);
+        document.addEventListener('click', handleCheckoutInteraction, true);
       })();
     </script>
 </body>
