@@ -95,6 +95,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         children: `(function(){var PIXEL_ID='1824487508563258';var DEV=/localhost|127\\.0\\.0\\.1|lovable\\.app/.test(location.hostname);function log(){if(DEV&&window.console)console.log.apply(console,['[MetaPixel]'].concat([].slice.call(arguments)));}!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src='https://connect.facebook.net/en_US/fbevents.js';s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script');fbq('init',PIXEL_ID);log('Pixel loaded',PIXEL_ID);function uuid(){return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g,function(c){var r=Math.random()*16|0,v=c==='x'?r:(r&0x3|0x8);return v.toString(16);});}function getCookie(name){var m=document.cookie.match(new RegExp('(?:^|; )'+name+'=([^;]*)'));return m?decodeURIComponent(m[1]):undefined;}function sendCapi(eventName,eventId,customData){try{fetch('/api/public/meta-capi',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify({event_name:eventName,event_id:eventId,event_source_url:location.href,fbp:getCookie('_fbp'),fbc:getCookie('_fbc'),custom_data:customData||{}})}).then(function(r){if(DEV)r.text().then(function(t){log('CAPI',eventName,r.status,t);});}).catch(function(e){log('CAPI error',e);});}catch(e){log('CAPI throw',e);}}var pvId=uuid();fbq('track','PageView',{},{eventID:pvId});log('PageView sent',pvId);sendCapi('PageView',pvId);window.addEventListener('message',function(event){if(event.origin!==window.location.origin)return;var data=event.data||{};if(data.source==='wiapy-checkout'&&data.eventName==='InitiateCheckout'){var id=uuid();if(typeof window.fbq==='function'){window.fbq('track','InitiateCheckout',{},{eventID:id});log('InitiateCheckout sent',id);}sendCapi('InitiateCheckout',id);}});window.__lovableMetaCapi={send:sendCapi,uuid:uuid};})();`,
       },
+      {
+        src: "https://cdn.utmify.com.br/scripts/utms/latest.js",
+        async: true,
+        defer: true,
+        "data-utmify-prevent-xcod-sck": "",
+        "data-utmify-prevent-subids": "",
+      },
     ],
   }),
 
