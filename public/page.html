@@ -1333,7 +1333,7 @@
         function notifyParentPixel() {
           try {
             if (window.parent && window.parent !== window) {
-              window.parent.postMessage({ source: 'wiapy-checkout', eventName: 'InitiateCheckout' }, window.location.origin);
+              window.parent.postMessage({ source: 'checkout', eventName: 'InitiateCheckout' }, window.location.origin);
             }
           } catch (e) { /* no-op */ }
         }
