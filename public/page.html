@@ -817,7 +817,7 @@
                                     </p>
                                 </div>
 
-                                <a href="https://pay.wiapy.com/R4PqF903ro" target="_blank" rel="noopener noreferrer" class="w-full block text-center bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-700 text-white py-5 rounded-2xl font-black text-lg shadow-xl shadow-blue-600/40 transition-all transform hover:-translate-y-1 active:scale-95 cursor-pointer">
+                                <a href="https://pay.kiwify.com.br/PrhRjNb" target="_blank" rel="noopener noreferrer" class="w-full block text-center bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-700 text-white py-5 rounded-2xl font-black text-lg shadow-xl shadow-blue-600/40 transition-all transform hover:-translate-y-1 active:scale-95 cursor-pointer">
                                     Quero o Pacote Completo
                                 </a>
                             </div>
@@ -1132,14 +1132,14 @@
                 <!-- CTA Actions -->
                 <div class="space-y-3">
                     <a 
-                        href="https://pay.wiapy.com/SDF8ESqHNh" target="_blank" rel="noopener noreferrer"
+                        href="https://pay.kiwify.com.br/KlI5kqa" target="_blank" rel="noopener noreferrer"
                         @click="showDiscountModal = false"
                         class="w-full flex items-center justify-center text-center bg-[#1da154] hover:bg-[#1a904b] text-white font-black text-xs md:text-[13px] py-4 px-4 rounded-xl shadow-lg hover:scale-[1.01] transition-all tracking-wider uppercase font-sans ring-2 ring-emerald-500/30 line-height-1.2 cursor-pointer"
                     >
                         SIM! Quero o Pacote Completo Com Desconto<br class="hidden xs:block" /> (R$17,90)
                     </a>
                     <a 
-                        href="https://pay.wiapy.com/tC9uZRmjGt" target="_blank" rel="noopener noreferrer"
+                        href="https://pay.kiwify.com.br/ef9miPn" target="_blank" rel="noopener noreferrer"
                         @click="showDiscountModal = false"
                         class="w-full block text-center bg-white hover:bg-slate-50 text-slate-500 border border-slate-200 py-3 rounded-xl font-bold text-[11px] md:text-xs transition-all cursor-pointer"
                     >
@@ -1358,7 +1358,7 @@
           var el = target;
 
           while (el && el !== document.body) {
-            if (el.tagName === 'A' && el.href && el.href.indexOf('pay.wiapy.com') !== -1) return el;
+            if (el.tagName === 'A' && el.href && el.href.indexOf('pay.kiwify.com.br') !== -1) return el;
 
             if (el.tagName === 'BUTTON') {
               var onclick = el.getAttribute('onclick') || '';
@@ -1366,9 +1366,9 @@
               var checkoutUrl = el.getAttribute('data-checkout-url') || el.getAttribute('data-href') || '';
 
               if (
-                onclick.indexOf('pay.wiapy.com') !== -1 ||
-                alpineClick.indexOf('pay.wiapy.com') !== -1 ||
-                checkoutUrl.indexOf('pay.wiapy.com') !== -1
+                onclick.indexOf('pay.kiwify.com.br') !== -1 ||
+                alpineClick.indexOf('pay.kiwify.com.br') !== -1 ||
+                checkoutUrl.indexOf('pay.kiwify.com.br') !== -1
               ) {
                 return el;
               }
